@@ -60,4 +60,4 @@ The final goal of the project is the elaboration of a best practice (possibly co
 
 ***
 ### References
-<sup>1</sup> Alice Maria Giani, et al., *Long walk to genomics: History and current approaches to genome sequencing and assembly*, Computational and Structural Biotechnology Journal, Volume 18, 2020, Pages 9-19
+<sup>1</sup> [Alice Maria Giani, et al., *Long walk to genomics: History and current approaches to genome sequencing and assembly*, Computational and Structural Biotechnology Journal, Volume 18, 2020, Pages 9-19](https://www.sciencedirect.com/science/article/pii/S2001037019303277)
