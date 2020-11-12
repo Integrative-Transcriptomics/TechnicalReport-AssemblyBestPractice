@@ -15,7 +15,7 @@ This research project tries to give an overview of the state of the art software
 The final goal of the project is the elaboration of a best practice (possibly comprising a script) based on the findings of the assembly software evaluation. The evaluation covers different project phases which are discussed in more detail below. To keep track of the projects progress the different phases are marked with a checkmar once completed.
 
 - ##### [I. Literature Research](i.-literature-research-and-acquisition-of-reference-data) :heavy_check_mark:
-- ##### [II. First round of evaluation](ii.-first-round-of-evaluation) :heavy_check_mark:
+- ##### [II. First round of evaluation](ii.-first-round-of-evaluation)
 - ##### [III. Acquisition of more complex input data](iii.-acquisition-of-more-complex-input-data)
 - ##### [IV. Second round of evaluation](iv.-second-round-of-evaluation)
 - ##### [V. Conclusion and best practice](v.-conclusion-and-best-practice)
@@ -46,7 +46,8 @@ A tabular overview of the software covered by the investigated literature is giv
 | [Redbean](https://github.com/ruanjue/wtdbg2)                                                                |                                                    |                                                                                               |                                               |
 | [Shasta](https://github.com/chanzuckerberg/shasta)                                                          |                                                    |                                                                                               |                                               |
 | [NextDenovo](https://github.com/Nextomics/NextDenovo)/[NextPolish](https://github.com/Nextomics/NextPolish) |                                                    |                                                                                               |                                               |
-<sup>i</sup> <small>Assembly polosher software uses short- or long-reads to refine an assembly and to correct errors.</small> 
+
+<sup>i</sup> <small>Assembly polisher software uses short- or long-reads to refine an assembly and to correct errors.</small> 
 
 Based on the authors conclusions Unicycler (hybrid and longread), Canu, Flye and Raven were selected as promising candidates for further testing. In addition the newly developed (January 2020) hybrid assembler HASLR was included, though it was not considered in the benchmarks.
 
@@ -56,6 +57,7 @@ Assembly polishing and evaluation methods will be covered in more detail in the 
 
 ***
 ### II. First round of evaluation
+
 ...
 
 ### Results
