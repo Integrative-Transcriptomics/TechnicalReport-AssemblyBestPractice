@@ -1,0 +1,20 @@
+reference chromosomes:
+	NC_009648.1 (total length: 5315120 bp, total length without N's: 5315120 bp, maximal covered length: 4917269 bp)
+	NC_009649.1 (total length: 175879 bp, total length without N's: 175879 bp, maximal covered length: 102680 bp)
+	NC_009650.1 (total length: 107576 bp, total length without N's: 107576 bp, maximal covered length: 0 bp)
+	NC_009651.1 (total length: 88582 bp, total length without N's: 88582 bp, maximal covered length: 820 bp)
+	NC_009652.1 (total length: 4259 bp, total length without N's: 4259 bp, maximal covered length: 0 bp)
+	NC_009653.1 (total length: 3478 bp, total length without N's: 3478 bp, maximal covered length: 0 bp)
+
+total genome size: 5694894
+
+gap min size: 50
+partial gene/operon min size: 100
+
+
+
+assembly                 | genome    | duplication | gaps      | genes     | partial   | operons   | partial   |
+                         | fraction  | ratio       | number    |           | genes     |           | operons   |
+========================================================================================================================
+Haslr                    | 0.119     | 1.000       | 25        | -         | -         | -         | -         |
+Unicycler_hybrid         | 88.163    | 1.005       | 87        | -         | -         | -         | -         |

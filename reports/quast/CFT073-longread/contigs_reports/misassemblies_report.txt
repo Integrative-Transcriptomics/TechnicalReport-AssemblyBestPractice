@@ -1,0 +1,23 @@
+All statistics are based on contigs of size >= 500 bp, unless otherwise noted (e.g., "# contigs (>= 0 bp)" and "Total length (>= 0 bp)" include all contigs).
+
+Assembly                     Unicycler_longread  Flye     Raven    Canu   
+# misassemblies              4                   3        3        3      
+  # contig misassemblies     4                   3        3        3      
+    # c. relocations         4                   3        3        3      
+    # c. translocations      0                   0        0        0      
+    # c. inversions          0                   0        0        0      
+  # scaffold misassemblies   0                   0        0        0      
+    # s. relocations         0                   0        0        0      
+    # s. translocations      0                   0        0        0      
+    # s. inversions          0                   0        0        0      
+# misassembled contigs       1                   1        1        1      
+Misassembled contigs length  5252002             5227573  5242394  5270626
+# local misassemblies        8                   8        8        11     
+# scaffold gap ext. mis.     0                   0        0        0      
+# scaffold gap loc. mis.     0                   0        0        0      
+# unaligned mis. contigs     0                   0        0        0      
+# mismatches                 11744               14879    11151    8823   
+# indels                     25993               11672    22721    27694  
+    # indels (<= 5 bp)       25863               11666    22645    27665  
+    # indels (> 5 bp)        130                 6        76       29     
+Indels length                38625               12335    30750    32482  

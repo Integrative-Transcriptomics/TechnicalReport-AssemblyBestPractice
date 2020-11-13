@@ -1,0 +1,8 @@
+All statistics are based on contigs of size >= 500 bp, unless otherwise noted (e.g., "# contigs (>= 0 bp)" and "Total length (>= 0 bp)" include all contigs).
+
+Assembly                       Unicycler_longread  Flye    Raven   Canu  
+# fully unaligned contigs      1                   0       0       0     
+Fully unaligned length         82712               0       0       0     
+# partially unaligned contigs  2                   2       2       2     
+Partially unaligned length     501887              496622  498921  535185
+# N's                          0                   0       0       0     

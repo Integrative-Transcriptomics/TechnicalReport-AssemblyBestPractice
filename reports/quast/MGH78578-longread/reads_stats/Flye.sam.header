@@ -1,0 +1,4 @@
+@HD	VN:1.3
+@SQ	SN:contig_1	LN:5279070
+@SQ	SN:contig_2	LN:185632
+@PG	ID:minimap2	PN:minimap2	CL:minimap2 -t 1 -ax map-ont /scratch/hackl/Forschungsprojekt/output/KPneumoniae-MGH78578/quast_longread/quast_corrected_input/Flye.fasta /scratch/hackl/Forschungsprojekt/Data/ONT-reads/KPneumoniae-MGH78578/SRR8494915.fastq	VN:2.17-r974-dirty

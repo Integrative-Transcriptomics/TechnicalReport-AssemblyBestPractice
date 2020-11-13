@@ -1,0 +1,64 @@
+All statistics are based on contigs of size >= 500 bp, unless otherwise noted (e.g., "# contigs (>= 0 bp)" and "Total length (>= 0 bp)" include all contigs).
+
+Assembly                       Unicycler_longread  Flye        Raven       Canu      
+# contigs (>= 0 bp)            3                   2           2           2         
+# contigs (>= 1000 bp)         3                   2           2           2         
+# contigs (>= 5000 bp)         3                   2           2           2         
+# contigs (>= 10000 bp)        3                   2           2           2         
+# contigs (>= 25000 bp)        3                   2           2           2         
+# contigs (>= 50000 bp)        3                   2           2           2         
+Total length (>= 0 bp)         5569753             5464702     5479656     5587817   
+Total length (>= 1000 bp)      5569753             5464702     5479656     5587817   
+Total length (>= 5000 bp)      5569753             5464702     5479656     5587817   
+Total length (>= 10000 bp)     5569753             5464702     5479656     5587817   
+Total length (>= 25000 bp)     5569753             5464702     5479656     5587817   
+Total length (>= 50000 bp)     5569753             5464702     5479656     5587817   
+# contigs                      3                   2           2           2         
+Largest contig                 5300332             5279070     5293344     5330918   
+Total length                   5569753             5464702     5479656     5587817   
+Reference length               5694894             5694894     5694894     5694894   
+GC (%)                         57.22               57.40       57.28       57.29     
+Reference GC (%)               57.15               57.15       57.15       57.15     
+N50                            5300332             5279070     5293344     5330918   
+NG50                           5300332             5279070     5293344     5330918   
+N75                            5300332             5279070     5293344     5330918   
+NG75                           5300332             5279070     5293344     5330918   
+L50                            1                   1           1           1         
+LG50                           1                   1           1           1         
+L75                            1                   1           1           1         
+LG75                           1                   1           1           1         
+# total reads                  107916              106321      105846      107376    
+# left                         0                   0           0           0         
+# right                        0                   0           0           0         
+Mapped (%)                     99.33               99.33       99.32       99.34     
+Reference mapped (%)           95.78               95.78       95.78       95.78     
+Properly paired (%)            0.0                 0.0         0.0         0.0       
+Reference properly paired (%)  0.0                 0.0         0.0         0.0       
+Avg. coverage depth            348                 350         350         347       
+Reference avg. coverage depth  313                 313         313         313       
+Coverage >= 1x (%)             100.0               100.0       100.0       100.0     
+Reference coverage >= 1x (%)   91.23               91.23       91.23       91.23     
+# misassemblies                48                  48          49          48        
+# misassembled contigs         1                   1           1           1         
+Misassembled contigs length    5300332             5279070     5293344     5330918   
+# local misassemblies          58                  54          59          56        
+# scaffold gap ext. mis.       0                   0           0           0         
+# scaffold gap loc. mis.       0                   0           0           0         
+# unaligned mis. contigs       1                   1           1           1         
+# unaligned contigs            1 + 2 part          0 + 2 part  0 + 2 part  0 + 2 part
+Unaligned length               584599              496622      498921      535185    
+Genome fraction (%)            87.345              87.377      87.372      87.412    
+Duplication ratio              1.002               0.998       1.001       1.015     
+# N's per 100 kbp              0.00                0.00        0.00        0.00      
+# mismatches per 100 kbp       805.80              877.63      790.70      757.75    
+# indels per 100 kbp           479.96              285.61      431.90      636.38    
+Largest alignment              426241              424590      425748      422714    
+Total aligned length           4983510             4966595     4979273     5051205   
+NA50                           148354              153039      153446      146980    
+NGA50                          141878              147703      148177      146980    
+NA75                           69842               69606       73271       69217     
+NGA75                          66900               66589       66760       69200     
+LA50                           12                  11          11          12        
+LGA50                          13                  12          12          12        
+LA75                           25                  24          23          25        
+LGA75                          27                  26          26          26        

@@ -1,0 +1,97 @@
+Aligning contigs to reference...
+	Aligning contigs to the reference
+Filtering alignments...
+Parsing coords...
+Loading reference...
+	Loaded [NC_004431.1]
+	Total Regions: 1
+	Total Region Length: 5231428
+Analyzing contigs...
+CONTIG: tig00000001 (5270626bp)
+Best alignment score: 1217861.3 (LEN: 1227559, IDY: 99.21), Total number of alignments: 25
+			Looking for the best set of alignments (out of 25 total alignments)
+			Skipping redundant alignments after choosing the best set of alignments
+		Skipping redundant alignment 341482 343760 | 3807348 3805078 | 2279 2271 | 99.52 | NC_004431.1 tig00000001
+		Skipping redundant alignment 4739183 4744337 | 4677239 4672132 | 5155 5108 | 98.6 | NC_004431.1 tig00000001
+		Skipping redundant alignment 235040 240268 | 4677239 4672132 | 5229 5108 | 96.33 | NC_004431.1 tig00000001
+		Skipping redundant alignment 2988725 2994188 | 4672092 4677420 | 5464 5329 | 95.54 | NC_004431.1 tig00000001
+		Skipping redundant alignment 4442490 4447849 | 4677442 4672132 | 5360 5311 | 98.13 | NC_004431.1 tig00000001
+		Skipping redundant alignment 235040 240282 | 4814259 4809142 | 5243 5118 | 96.21 | NC_004431.1 tig00000001
+		Skipping redundant alignment 4739183 4744352 | 4814259 4809141 | 5170 5119 | 98.37 | NC_004431.1 tig00000001
+		Skipping redundant alignment 2988678 2994188 | 4809068 4814439 | 5511 5372 | 95.62 | NC_004431.1 tig00000001
+		Skipping redundant alignment 4442475 4447863 | 4814476 4809142 | 5389 5335 | 97.88 | NC_004431.1 tig00000001
+		This contig has several significant sets of alignments. [An ambiguously mapped contig]
+		Using only the very best set (option --ambiguity-usage is set to "one").
+			The best set is below. Score: 5224999.5, number of alignments: 16, unaligned bases: 3059
+		This contig is misassembled.
+		This contig is partially unaligned. (Aligned 5267567 out of 5270626 non-N bases (99.94%))
+			Real Alignment 1: 3858546 4167029 | 306590 1 | 308484 306590 | 99.18 | NC_004431.1 tig00000001
+			  Gap between these two alignments (local misassembly). Inconsistency = 12
+			Real Alignment 2: 3855030 3858331 | 310071 306793 | 3302 3279 | 97.28 | NC_004431.1 tig00000001
+			  Gap between these two alignments (local misassembly). Inconsistency = -244
+			Real Alignment 3: 3104522 3855149 | 1056414 310196 | 750628 746219 | 99.23 | NC_004431.1 tig00000001
+			  Gap between these two alignments (local misassembly). Inconsistency = 135
+			Real Alignment 4: 3064202 3104338 | 1096388 1056463 | 40137 39926 | 99.35 | NC_004431.1 tig00000001
+			  Gap between these two alignments (local misassembly). Inconsistency = 110
+			Excluding internal overlap of size 188 between Alignment 5 and 6: 2405719 3064012 | 1750891 1096468 | 658294 654424 --> 2405907 3064012 | 1750703 1096468 | 658106 654236
+			Real Alignment 5: 2405907 3064012 | 1750703 1096468 | 658106 654236 | 99.21 | NC_004431.1 tig00000001
+			  Overlap between these two alignments (local misassembly). Inconsistency = -193
+			Real Alignment 6: 1665041 2406099 | 2487316 1750704 | 741059 736613 | 99.24 | NC_004431.1 tig00000001
+			  Extensive misassembly (relocation, inconsistency = -3087) between these two alignments
+			Excluding internal overlap of size 271 between Alignment 7 and 8: 1665639 1666159 | 2489803 2489285 | 521 519 --> 1665911 1666159 | 2489532 2489285 | 249 248
+			Real Alignment 7: 1665911 1666159 | 2489532 2489285 | 249 248 | 95.01 | NC_004431.1 tig00000001
+			  Gap between these two alignments (local misassembly). Inconsistency = 588
+			Excluding internal overlap of size 245 between Alignment 8 and 9: 341482 430519 | 3805346 3716847 | 89038 88500 --> 341482 430273 | 3805346 3717092 | 88792 88255
+			Real Alignment 8: 430368 1665322 | 3717091 2489533 | 1234955 1227559 | 99.21 | NC_004431.1 tig00000001
+			  Gap between these two alignments (local misassembly). Inconsistency = 94
+			Excluding internal overlap of size 1269 between Alignment 9 and 10: 341482 343760 | 3806348 3804078 | 2279 2271 --> 341482 342486 | 3806348 3805347 | 1005 1002
+			Real Alignment 9: 341482 430273 | 3805346 3717092 | 88792 88255 | 99.24 | NC_004431.1 tig00000001
+			  Extensive misassembly (relocation, inconsistency = -1005) between these two alignments
+			Excluding internal overlap of size 269 between Alignment 10 and 11: 341482 342486 | 3806348 3805347 | 1005 1002 --> 341751 342486 | 3806079 3805347 | 736 733
+			Real Alignment 10: 341751 342486 | 3806079 3805347 | 736 733 | 99.52 | NC_004431.1 tig00000001
+			  Extensive misassembly (relocation, inconsistency = -2010) between these two alignments
+			Real Alignment 11: 236912 343760 | 3912276 3806080 | 106849 106197 | 99.24 | NC_004431.1 tig00000001
+			  Gap between these two alignments (local misassembly). Inconsistency = -13
+			Real Alignment 12: 1 236771 | 4147867 3912430 | 236771 235438 | 99.27 | NC_004431.1 tig00000001
+			  Not a misassembly [linear representation of circular genome] between these two alignments
+			Real Alignment 13: 4741104 5231428 | 4635324 4147868 | 490325 487457 | 99.24 | NC_004431.1 tig00000001
+			  Gap between these two alignments (local misassembly). Inconsistency = -90
+			Real Alignment 14: 4700785 4740914 | 4675485 4635604 | 40130 39882 | 99.03 | NC_004431.1 tig00000001
+			  Gap between these two alignments (local misassembly). Inconsistency = 86
+			Real Alignment 15: 4563061 4700678 | 4812363 4675506 | 137618 136858 | 99.26 | NC_004431.1 tig00000001
+			  Gap between these two alignments (local misassembly). Inconsistency = 94
+			Real Alignment 16: 4101883 4562780 | 5270626 4812550 | 460898 458077 | 99.18 | NC_004431.1 tig00000001
+		Unaligned bases: 3059
+
+Analyzing coverage...
+Writing SNPs into /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_longread/contigs_reports/minimap_output/Canu.used_snps.gz
+
+Analysis is finished!
+Founded SNPs were written into /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_longread/contigs_reports/minimap_output/Canu.used_snps.gz
+
+Results:
+	Local Misassemblies: 11
+	Misassemblies: 3
+		Relocations: 3
+		Translocations: 0
+		Inversions: 0
+	Scaffold gap extensive misassemblies: 0
+	Scaffold gap local misassemblies: 0
+	Misassembled Contigs: 1
+	Misassembled Contig Bases: 5270626
+	Misassemblies Inter-Contig Overlap: 0
+Unaligned Contigs: 0 + 1 part
+Half Unaligned Contigs with Misassemblies: 0
+Unaligned Contig Bases: 3059
+
+Ambiguously Mapped Contigs: 1
+Total Bases in Ambiguously Mapped Contigs: 5270626
+Extra Bases in Ambiguously Mapped Contigs: 0
+Note that --allow-ambiguity option was set to "one" and only first alignment per each of these contigs was used.
+
+	Covered Bases: 5229764
+
+	SNPs: 8823
+	Insertions: 505
+	Deletions: 31977
+

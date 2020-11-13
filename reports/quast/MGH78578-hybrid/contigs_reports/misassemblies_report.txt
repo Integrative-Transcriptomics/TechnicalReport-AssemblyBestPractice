@@ -1,0 +1,24 @@
+All statistics are based on contigs of size >= 500 bp, unless otherwise noted (e.g., "# contigs (>= 0 bp)" and "Total length (>= 0 bp)" include all contigs).
+
+Assembly                     Haslr  Unicycler_hybrid
+# misassemblies              0      49              
+  # contig misassemblies     0      49              
+    # c. relocations         0      46              
+    # c. translocations      0      1               
+    # c. inversions          0      2               
+  # scaffold misassemblies   0      0               
+    # s. relocations         0      0               
+    # s. translocations      0      0               
+    # s. inversions          0      0               
+# misassembled contigs       0      6               
+Misassembled contigs length  0      5423105         
+# local misassemblies        0      52              
+# scaffold gap ext. mis.     0      0               
+# scaffold gap loc. mis.     0      0               
+# structural variations      0      5               
+# unaligned mis. contigs     1      2               
+# mismatches                 82     29362           
+# indels                     22     1138            
+    # indels (<= 5 bp)       22     1046            
+    # indels (> 5 bp)        0      92              
+Indels length                28     3453            

@@ -1,0 +1,5 @@
+@HD	VN:1.3	SO:coordinate
+@SQ	SN:NC_004431.1	LN:5231428
+@PG	ID:bwa	PN:bwa	CL:/usr/bin/bwa mem -t 2 /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/EColi_CFT073.fasta /scratch/hackl/Forschungsprojekt/Data/Illumina-reads/EColi-CFT073/SRR8482585_1.fastq /scratch/hackl/Forschungsprojekt/Data/Illumina-reads/EColi-CFT073/SRR8482585_2.fastq	VN:0.7.17-r1188
+@PG	ID:minimap2	PN:minimap2	CL:minimap2 -t 2 -ax map-ont /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/EColi_CFT073.fasta /scratch/hackl/Forschungsprojekt/Data/ONT-reads/EColi-CFT073/SRR8494940-t.fastq	VN:2.17-r974-dirty
+@PG	ID:sambamba markdup	CL:/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux markdup -r -t 2 --tmpdir /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.pe1.bam /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.pe1.dedup.bam	PP:bwa	VN:0.6.3

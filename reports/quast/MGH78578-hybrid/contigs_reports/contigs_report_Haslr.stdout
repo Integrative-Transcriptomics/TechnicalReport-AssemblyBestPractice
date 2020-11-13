@@ -1,0 +1,81 @@
+Aligning contigs to reference...
+	Aligning contigs to the reference
+Filtering alignments...
+Parsing coords...
+Loading reference...
+	Loaded [NC_009648.1]
+	Loaded [NC_009649.1]
+	Loaded [NC_009650.1]
+	Loaded [NC_009651.1]
+	Loaded [NC_009652.1]
+	Loaded [NC_009653.1]
+	Total Regions: 6
+	Total Region Length: 5694894
+Analyzing contigs...
+CONTIG: 0 (88302bp)
+Best alignment score: 2908.1 (LEN: 2969, IDY: 97.95), Total number of alignments: 25
+			Looking for the best set of alignments (out of 25 total alignments)
+			The best set is below. Score: 5905.9, number of alignments: 25, unaligned bases: 81536
+		This contig is misassembled.
+		This contig is partially unaligned. (Aligned 6766 out of 88302 non-N bases (7.66%))
+			Warning! This contig is more unaligned than misassembled. Contig length is 88302 (number of Ns: 0) and total length of all aligns is 6766
+		Alignment: 121156 124122 | 55460 58428 | 2967 2969 | 97.95 | NC_009649.1 0
+		Alignment: 127477 127606 | 58454 58583 | 130 130 | 98.46 | NC_009649.1 0
+		Alignment: 127726 127818 | 58701 58793 | 93 93 | 96.77 | NC_009649.1 0
+		Alignment: 127819 127988 | 58795 58964 | 170 170 | 95.88 | NC_009649.1 0
+		Alignment: 128321 128423 | 59285 59387 | 103 103 | 98.06 | NC_009649.1 0
+		Alignment: 128447 128713 | 59415 59681 | 267 267 | 95.88 | NC_009649.1 0
+		Alignment: 128715 128823 | 59682 59790 | 109 109 | 99.08 | NC_009649.1 0
+		Alignment: 129639 129708 | 60616 60685 | 70 70 | 98.57 | NC_009649.1 0
+		Alignment: 129709 129785 | 60688 60764 | 77 77 | 100.0 | NC_009649.1 0
+		Alignment: 130124 130215 | 61111 61202 | 92 92 | 98.91 | NC_009649.1 0
+		Alignment: 130305 130403 | 61291 61389 | 99 99 | 97.98 | NC_009649.1 0
+		Alignment: 130545 130644 | 61536 61635 | 100 100 | 100.0 | NC_009649.1 0
+		Alignment: 131350 131424 | 62343 62417 | 75 75 | 98.67 | NC_009649.1 0
+		Alignment: 131774 131903 | 62770 62899 | 130 130 | 99.23 | NC_009649.1 0
+		Alignment: 131905 132040 | 62900 63035 | 136 136 | 100.0 | NC_009649.1 0
+		Alignment: 132041 132120 | 63037 63116 | 80 80 | 98.75 | NC_009649.1 0
+		Alignment: 132438 132509 | 63436 63507 | 72 72 | 97.22 | NC_009649.1 0
+		Alignment: 132652 132730 | 81481 81559 | 79 79 | 100.0 | NC_009649.1 0
+		Alignment: 132963 133035 | 81797 81869 | 73 73 | 97.26 | NC_009649.1 0
+		Alignment: 133238 133306 | 82071 82139 | 69 69 | 98.55 | NC_009649.1 0
+		Alignment: 133437 133529 | 82267 82359 | 93 93 | 100.0 | NC_009649.1 0
+		Alignment: 133646 133726 | 82478 82558 | 81 81 | 100.0 | NC_009649.1 0
+		Alignment: 134736 134835 | 85414 85513 | 100 100 | 96.0 | NC_009649.1 0
+		Alignment: 134919 135015 | 85596 85692 | 97 97 | 96.91 | NC_009649.1 0
+		Alignment: 136211 137612 | 86870 88271 | 1402 1402 | 99.71 | NC_009649.1 0
+		Unaligned bases: 81536
+
+Analyzing coverage...
+Writing SNPs into /scratch/hackl/Forschungsprojekt/output/KPneumoniae-MGH78578/quast_hybrid/contigs_reports/minimap_output/Haslr.used_snps.gz
+
+Analysis is finished!
+Founded SNPs were written into /scratch/hackl/Forschungsprojekt/output/KPneumoniae-MGH78578/quast_hybrid/contigs_reports/minimap_output/Haslr.used_snps.gz
+
+Results:
+	Local Misassemblies: 0
+	Misassemblies: 0
+		Relocations: 0
+		Translocations: 0
+		Inversions: 0
+	Scaffold gap extensive misassemblies: 0
+	Scaffold gap local misassemblies: 0
+	Fake misassemblies matched with structural variations: 0
+	Misassembled Contigs: 0
+	Misassembled Contig Bases: 0
+	Misassemblies Inter-Contig Overlap: 0
+Unaligned Contigs: 0 + 1 part
+Half Unaligned Contigs with Misassemblies: 1
+Unaligned Contig Bases: 81536
+
+Ambiguously Mapped Contigs: 0
+Total Bases in Ambiguously Mapped Contigs: 0
+Extra Bases in Ambiguously Mapped Contigs: 0
+Note that --allow-ambiguity option was set to "one" and only first alignment per each of these contigs was used.
+
+	Covered Bases: 6764
+
+	SNPs: 82
+	Insertions: 15
+	Deletions: 13
+

@@ -1,0 +1,14 @@
+reference chromosomes:
+	NC_004431.1 (total length: 5231428 bp, total length without N's: 5231148 bp, maximal covered length: 5230186 bp)
+
+total genome size: 5231428
+
+gap min size: 50
+partial gene/operon min size: 100
+
+
+
+assembly                 | genome    | duplication | gaps      | genes     | partial   | operons   | partial   |
+                         | fraction  | ratio       | number    |           | genes     |           | operons   |
+========================================================================================================================
+Unicycler_hybrid         | 99.982    | 1.001       | 5         | -         | -         | -         | -         |

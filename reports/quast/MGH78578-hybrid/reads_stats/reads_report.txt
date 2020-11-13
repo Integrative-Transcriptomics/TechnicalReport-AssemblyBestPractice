@@ -1,0 +1,30 @@
+All statistics are based on contigs of size >= 500 bp, unless otherwise noted (e.g., "# contigs (>= 0 bp)" and "Total length (>= 0 bp)" include all contigs).
+
+Assembly                       Haslr    Unicycler_hybrid
+# total reads                  3095801  2965872         
+# left                         1495775  1424418         
+# right                        1495795  1424443         
+# mapped                       13344    2943646         
+Mapped (%)                     0.43     99.25           
+# properly paired              8028     2813838         
+Properly paired (%)            0.26     94.87           
+# singletons                   1038     5056            
+Singletons (%)                 0.03     0.17            
+# misjoint mates               0        4926            
+Misjoint mates (%)             0.0      0.17            
+Avg. coverage depth            300      407             
+Coverage >= 1x (%)             99.11    100.0           
+Coverage >= 5x (%)             94.58    100.0           
+Coverage >= 10x (%)            94.39    100.0           
+# reference mapped             2652539  2652539         
+Reference mapped (%)           88.76    88.76           
+# reference properly paired    2509736  2509736         
+Reference properly paired (%)  83.98    83.98           
+# reference singletons         9100     9100            
+Reference singletons (%)       0.3      0.3             
+# reference misjoint mates     1866     1866            
+Reference misjoint mates (%)   0.06     0.06            
+Reference avg. coverage depth  379      379             
+Reference coverage >= 1x (%)   93.24    93.24           
+Reference coverage >= 5x (%)   92.88    92.88           
+Reference coverage >= 10x (%)  92.8     92.8            

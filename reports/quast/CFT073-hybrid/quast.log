@@ -1,0 +1,296 @@
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast.py -o /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid -t 4 -r /scratch/hackl/Forschungsprojekt/Data/References/EColi-CFT073.fasta --pe1 /scratch/hackl/Forschungsprojekt/Data/Illumina-reads/EColi-CFT073/SRR8482585_1.fastq --pe2 /scratch/hackl/Forschungsprojekt/Data/Illumina-reads/EColi-CFT073/SRR8482585_2.fastq --nanopore /scratch/hackl/Forschungsprojekt/Data/ONT-reads/EColi-CFT073/SRR8494940-t.fastq -l Unicycler_hybrid /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/hybrid/unicycler/assembly.fasta
+
+Version: 5.0.2, 0bb1dd1b
+
+System information:
+  OS: Linux-5.1.7-arch1-1-ARCH-x86_64-with-arch (linux_64)
+  Python version: 3.7.3
+  CPUs number: 32
+
+Started: 2020-11-13 11:24:29
+
+Logging to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast.log
+
+CWD: /scratch/hackl/Forschungsprojekt/scripts
+Main parameters: 
+  MODE: default, threads: 4, minimum contig length: 500, minimum alignment length: 65, \
+  ambiguity: one, threshold for extensive misassembly size: 1000
+
+Reference:
+  /scratch/hackl/Forschungsprojekt/Data/References/EColi-CFT073.fasta ==> EColi_CFT073
+
+Contigs:
+  Pre-processing...
+  /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/hybrid/unicycler/assembly.fasta ==> Unicycler_hybrid
+
+2020-11-13 11:24:30
+Running Reads analyzer...
+
+NOTICE: Improper read names in /scratch/hackl/Forschungsprojekt/Data/Illumina-reads/EColi-CFT073/SRR8482585_1.fastq (forward reads)! Names should end with /1 (for forward reads) or /2 (for reverse reads) but @SRR8482585.1 was found!
+QUAST will attempt to fix read names.
+
+NOTICE: Improper read names in /scratch/hackl/Forschungsprojekt/Data/Illumina-reads/EColi-CFT073/SRR8482585_2.fastq (reverse reads)! Names should end with /1 (for forward reads) or /2 (for reverse reads) but @SRR8482585.1 was found!
+QUAST will attempt to fix read names.
+  Logging to files /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.log and /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err...
+  Pre-processing reads...
+  Running BWA for reference...
+  Pre-processing reads...
+  Running BWA...
+/usr/bin/bwa index -p /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/EColi_CFT073.fasta \
+/scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/EColi_CFT073.fasta \
+>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/usr/bin/bwa index -p /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/Unicycler_hybrid.fasta \
+/scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/Unicycler_hybrid.fasta \
+>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/usr/bin/bwa mem -t 2 /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/EColi_CFT073.fasta \
+/scratch/hackl/Forschungsprojekt/Data/Illumina-reads/EColi-CFT073/SRR8482585_1.fastq \
+/scratch/hackl/Forschungsprojekt/Data/Illumina-reads/EColi-CFT073/SRR8482585_2.fastq \
+> EColi_CFT073.pe1.sam 2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/usr/bin/bwa mem -t 2 /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/Unicycler_hybrid.fasta \
+/scratch/hackl/Forschungsprojekt/Data/Illumina-reads/EColi-CFT073/SRR8482585_1.fastq \
+/scratch/hackl/Forschungsprojekt/Data/Illumina-reads/EColi-CFT073/SRR8482585_2.fastq \
+> Unicycler_hybrid.pe1.sam 2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+view -t 2 -h -S -f bam Unicycler_hybrid.pe1.sam > Unicycler_hybrid.pe1.bam 2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+view -t 2 -h -S -f bam EColi_CFT073.pe1.sam > EColi_CFT073.pe1.bam 2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+markdup -r -t 2 --tmpdir /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats \
+Unicycler_hybrid.pe1.bam Unicycler_hybrid.pe1.dedup.bam 2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+markdup -r -t 2 --tmpdir /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats \
+EColi_CFT073.pe1.bam EColi_CFT073.pe1.dedup.bam 2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/usr/bin/minimap2 -t 2 -ax map-ont /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/Unicycler_hybrid.fasta \
+/scratch/hackl/Forschungsprojekt/Data/ONT-reads/EColi-CFT073/SRR8494940-t.fastq > \
+Unicycler_hybrid.nanopore1.sam 2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/usr/bin/minimap2 -t 2 -ax map-ont /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/EColi_CFT073.fasta \
+/scratch/hackl/Forschungsprojekt/Data/ONT-reads/EColi-CFT073/SRR8494940-t.fastq > \
+EColi_CFT073.nanopore1.sam 2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+view -t 2 -h -S -f bam Unicycler_hybrid.nanopore1.sam > Unicycler_hybrid.nanopore1.bam \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+view -t 2 -h -S -f bam EColi_CFT073.nanopore1.sam > EColi_CFT073.nanopore1.bam 2>> \
+/scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+sort -t 4 --tmpdir . -m 100GB -o Unicycler_hybrid.pe.sorted.bam Unicycler_hybrid.pe.bam \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+sort -t 4 --tmpdir . -m 100GB -o EColi_CFT073.pe.sorted.bam EColi_CFT073.pe.bam 2>> \
+/scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+sort -t 4 --tmpdir . -m 100GB -o Unicycler_hybrid.nanopore.sorted.bam Unicycler_hybrid.nanopore.bam \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+sort -t 4 --tmpdir . -m 100GB -o EColi_CFT073.nanopore.sorted.bam EColi_CFT073.nanopore.bam \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+merge -t 2 Unicycler_hybrid.bam Unicycler_hybrid.pe.sorted.bam Unicycler_hybrid.nanopore.sorted.bam \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+merge -t 2 EColi_CFT073.bam EColi_CFT073.pe.sorted.bam EColi_CFT073.nanopore.sorted.bam \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+view -t 2 -h Unicycler_hybrid.bam > Unicycler_hybrid.sam 2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+view -t 2 -h EColi_CFT073.bam > EColi_CFT073.sam 2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+  Done.
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+view -H -S /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/Unicycler_hybrid.sam \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/Unicycler_hybrid.sam.header \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+  Sorting SAM-file...
+  Done.
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+view -H -S /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.sam \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/EColi_CFT073.sam.header \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+  Sorting SAM-file for reference...
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+view -t 2 -h -S -f bam /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/Unicycler_hybrid.all.correct.sam \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/Unicycler_hybrid.bam \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+view -t 2 -h -S -f bam /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.all.correct.sam \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.bam \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+flagstat -t 2 /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/Unicycler_hybrid.bam \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/Unicycler_hybrid.stat \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+flagstat -t 2 /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.bam \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/EColi_CFT073.stat \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/usr/bin/bamToBed -i /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/Unicycler_hybrid.bam \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/Unicycler_hybrid.bed \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/usr/bin/bamToBed -i /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.bam \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.bed \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+sort -k1,1 -k2,2n /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/Unicycler_hybrid.bed \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/Unicycler_hybrid.sorted.bed \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/usr/bin/bedtools genomecov -i /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/Unicycler_hybrid.sorted.bed \
+-g /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/Unicycler_hybrid.fasta.fai \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/Unicycler_hybrid.genomecov \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+  Analysis is finished.
+sort -k1,1 -k2,2n /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.bed \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.sorted.bed \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/usr/bin/bedtools genomecov -i /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.sorted.bed \
+-g /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/EColi_CFT073.fasta.fai \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.genomecov \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+  Analysis for reference is finished.
+  Creating total report...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_report.txt, reads_report.tsv, and reads_report.tex
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+view -t 4 -h -f bam -F not unmapped /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.bam \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.mapped.bam \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+sort -t 4 --tmpdir /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output \
+-m 100GB -o /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.mapped.sorted.bam \
+/scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.mapped.bam \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+view -t 4 -h /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.mapped.sorted.bam \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.all.correct.sorted.sam \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+  Calculating reads coverage...
+/usr/bin/bedtools genomecov -ibam /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.mapped.sorted.bam \
+-g /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/EColi_CFT073.fasta.fai \
+-bga > /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/EColi_CFT073.cov_raw \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+  Calculating physical coverage...
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+view -t 4 -h -f bam -F proper_pair and not supplementary and not duplicate and template_length > -1000 and template_length < 1000 \
+/scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.bam \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.physical.bam \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/sambamba/sambamba_linux \
+sort -t 4 --tmpdir /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output \
+-m 100GB -o /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.physical.sorted.bam \
+/scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.physical.bam \
+-n 2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/usr/bin/bamToBed -i /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.physical.sorted.bam \
+-bedpe > /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.physical.bedpe \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+sort -k1,1 -k2,2n /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.physical.bed \
+> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.physical.sorted.bed \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+/usr/bin/bedtools genomecov -i /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.physical.sorted.bed \
+-g /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/EColi_CFT073.fasta.fai \
+-bga > /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/EColi_CFT073.physical.raw.cov \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+  Looking for trivial deletions (long zero-covered fragments)...
+  Trivial deletions: 0 found
+    Saving to: /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/trivial_deletions.bed
+  Searching structural variations with GRIDSS...
+java -ea -Xmx31g -Dsamjdk.create_index=true -Dsamjdk.use_async_io_read_samtools=true \
+-Dsamjdk.use_async_io_write_samtools=true -Dsamjdk.use_async_io_write_tribble=true \
+-cp /scratch/hackl/Forschungsprojekt/tools/quast-5.0.2/quast_libs/gridss/gridss-1.4.1.jar \
+gridss.CallVariants I=/scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073.mapped.sorted.bam \
+O=/scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073_gridss/EColi_CFT073.vcf \
+ASSEMBLY=/scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073_gridss/EColi_CFT073.gridss.bam \
+R=/scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/EColi_CFT073.fasta \
+WORKER_THREADS=4 WORKING_DIR=/scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073_gridss \
+2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err
+The tool returned non-zero. See ../output/EColi-CFT073/quast_hybrid/reads_stats/reads_stats.err for stderr.
+    Saving to: /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/temp_output/EColi_CFT073_structural_variations.bed
+  No structural variations were found.
+  Coverage distribution along the reference genome is in /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/reads_stats/EColi_CFT073.cov
+Done.
+
+2020-11-13 12:33:56
+Running Basic statistics processor...
+  Reference genome:
+    EColi_CFT073.fasta, length = 5231428, num fragments = 1, GC % = 50.48
+  Contig files: 
+    Unicycler_hybrid
+  Calculating N50 and L50...
+    Unicycler_hybrid, N50 = 5236984, L50 = 1, Total length = 5236984, GC % = 50.48, # N's per 100 kbp =  0.00
+  Drawing Nx plot...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/basic_stats/Nx_plot.pdf
+  Drawing NGx plot...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/basic_stats/NGx_plot.pdf
+  Drawing cumulative plot...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/basic_stats/cumulative_plot.pdf
+  Drawing GC content plot...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/basic_stats/GC_content_plot.pdf
+  Drawing Unicycler_hybrid GC content plot...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/basic_stats/Unicycler_hybrid_GC_content_plot.pdf
+Done.
+
+2020-11-13 12:33:58
+Running Contig analyzer...
+  Unicycler_hybrid
+  Logging to files /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/contigs_reports/contigs_report_Unicycler_hybrid.stdout and contigs_report_Unicycler_hybrid.stderr...
+  Aligning contigs to the reference
+  /usr/bin/minimap2 -c -x asm5 -B5 -O4,16 --no-long-join -r 85 -N 50 -s 65 -z 200 \
+  --mask-level 0.9 --min-occ 200 -g 2500 --score-N 2 --cs -t 4 /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/EColi_CFT073.fasta \
+  /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast_corrected_input/Unicycler_hybrid.fasta \
+  > /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/contigs_reports/minimap_output/Unicycler_hybrid.coords_tmp \
+  2>> /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/contigs_reports/contigs_report_Unicycler_hybrid.stderr
+  Analysis is finished.
+
+  Creating total report...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/contigs_reports/misassemblies_report.txt, misassemblies_report.tsv, and misassemblies_report.tex
+  Transposed version of total report...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/contigs_reports/transposed_report_misassemblies.txt, transposed_report_misassemblies.tsv, and transposed_report_misassemblies.tex
+  Creating total report...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/contigs_reports/unaligned_report.txt, unaligned_report.tsv, and unaligned_report.tex
+  Drawing misassemblies by types plot...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/contigs_reports/misassemblies_plot.pdf
+  Drawing misassemblies FRCurve plot...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/contigs_reports/misassemblies_frcurve_plot.pdf
+Done.
+
+2020-11-13 12:34:02
+Running NA-NGA calculation...
+  Unicycler_hybrid, Largest alignment = 2720115, NA50 = 2720115, NGA50 = 2720115, LA50 = 1, LGA50 = 1
+  Drawing cumulative plot...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/aligned_stats/cumulative_plot.pdf
+  Drawing NAx plot...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/aligned_stats/NAx_plot.pdf
+  Drawing NGAx plot...
+    saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/aligned_stats/NGAx_plot.pdf
+Done.
+
+2020-11-13 12:34:03
+Running Genome analyzer...
+  NOTICE: No file with genomic features were provided. Use the --features option if you want to specify it.
+
+  NOTICE: No file with operons were provided. Use the -O option if you want to specify it.
+  Unicycler_hybrid
+  Analysis is finished.
+  Skipping drawing Genome fraction, % histogram... (less than 2 columns histogram makes no sense)
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding or --glimmer option to enable it.
+
+2020-11-13 12:34:05
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 2: Creating Icarus viewers...
+  2 of 2: Creating PDF with all tables and plots...
+Done
+
+2020-11-13 12:34:08
+RESULTS:
+  Text versions of total report are saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) is saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/report.html
+  PDF version (tables and plots) is saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/report.pdf
+  Icarus (contig browser) is saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/icarus.html
+  Log is saved to /scratch/hackl/Forschungsprojekt/output/EColi-CFT073/quast_hybrid/quast.log
+
+Finished: 2020-11-13 12:34:08
+Elapsed time: 1:09:38.732788
+NOTICEs: 5; WARNINGs: 0; non-fatal ERRORs: 0
+
+Thank you for using QUAST!
