@@ -59,7 +59,7 @@ Assembly polishing and evaluation methods will be covered in more detail in the 
 
 Before the assembly was performed, possible adapters of the ONT reads were removed using Porechop and the quality of all reads was validated using FastQC.
 
-For each assembly a dotplot was created using D-Genies to get a top-level impression of the quality of the assemblies.
+For each assembly a dotplot was created using D-Genies to get a top-level impression of the quality of the assemblies. For each of the reference genomes, short- and long-reads were mapped against the reference using bwa and a depth of coverage plot was created to get insights into which genomic regions are actually supported by the input data.
 
 Furthermore, all assemblies were evaluated on a finer level with Quast: Quast provides the most important metrics for the evaluation of assemblies like GC content, length comparisons, indicators for miss assemblies like repetitive regions, local miss assemblies like indels, insertions and gaps as well as statistics for read coverage and structural variations. The latter option was not chosen for the first run, since it is not clear to what extent the genomes of the cultures from which the reads were taken actually correspond to the references and this factor plays only a minor role for a first rough evaluation.
 
@@ -67,19 +67,21 @@ Furthermore, all assemblies were evaluated on a finer level with Quast: Quast pr
 
 Except for HASLR on the E.Coli CFT073 dataset all assemblies were able to complete without errors. HASLR did not produce any assembly on the mentioned dataset while no error was thrown.
 
+#### Assembly dotplots
+
 In the following the dotplots created with D-Genies are depicted. 
 
 ##### Hybrid assemblies, reference E.Coli CFT073
-<img align="center" src="images/dotplot_hybrid_CFT073.png" width="400" > ![](dotplot_hybrid_CFT073.png)
+<img align="center" src="images/dotplot_hybrid_CFT073.png" width="300" > ![](dotplot_hybrid_CFT073.png)
 
 ##### Hybrid assemblies, reference K.Pneumoniae MGH78578
-<img align="center" src="images/dotplot_hybrid_MGH78578.png" width="800" > ![](dotplot_hybrid_MGH78578.png)
+<img align="center" src="images/dotplot_hybrid_MGH78578.png" width="600" > ![](dotplot_hybrid_MGH78578.png)
 
 ##### Longread assemblies, reference E.Coli CFT073
-<img align="center" src="images/dotplot_longread_CFT073.png" width="800" > ![](dotplot_longread_CFT073.png)
+<img align="center" src="images/dotplot_longread_CFT073.png" width="600" > ![](dotplot_longread_CFT073.png)
 
 ##### Longread assemblies, reference K.Pneumoniae MGH78578
-<img align="center" src="images/dotplot_longread_MGH78578.png" width="800" > ![](dotplot_longread_MGH78578.png)
+<img align="center" src="images/dotplot_longread_MGH78578.png" width="600" > ![](dotplot_longread_MGH78578.png)
 
 **Note:** The parallel two lines of the plots are likely to arise due to the fact that the assemblies do not start at the same absolute genomic positions compared to the reference.
 
@@ -87,6 +89,42 @@ From the dotplots it is clearly visible that:
 1. HASLR failed to reconstruct the genome of the K.Pneumoniae MGH78578 reference completely.
 2. All other assemblers did not perform apparently different compared to each other.
 3. The assemblies of the E.Coli dataset have a much higher contiguity compared to the K.Pneumoniae dataset.
+
+#### Depth of coverage across references
+
+The following plots depict the average (across a specific resolution, e.g. 10 kBp intervals) depth of coverage of the references. The left side shows longread coverage while the right side shows short read coverage.
+
+##### Depth of coverage, reference E.Coli CFT073
+<img align="center" src="images/depthOfCoverage_CFT073_longread.png" width="450" > ![](depthOfCoverage_CFT073_longread.png)
+<img align="center" src="images/depthOfCoverage_CFT073_shortread.png" width="450" > ![](depthOfCoverage_CFT073_shortread.png)
+
+##### Depth of coverage, reference K.Pneumoniae MGH78578, genome
+<img align="center" src="images/depthOfCoverage_MGH78578-chr_longread.png" width="450" > ![](depthOfCoverage_MGH78578-chr_longread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-chr_shortread.png" width="450" > ![](depthOfCoverage_MGH78578-chr_shortread.png)
+
+##### Depth of coverage, reference K.Pneumoniae MGH78578, plasmid one
+<img align="center" src="images/depthOfCoverage_MGH78578-p1_longread.png" width="450" > ![](depthOfCoverage_MGH78578-p1_longread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p1_shortread.png" width="450" > ![](depthOfCoverage_MGH78578-p1_shortread.png)
+
+##### Depth of coverage, reference K.Pneumoniae MGH78578, plasmid two
+<img align="center" src="images/depthOfCoverage_MGH78578-p2_longread.png" width="450" > ![](depthOfCoverage_MGH78578-p2_longread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p2_shortread.png" width="450" > ![](depthOfCoverage_MGH78578-p2_shortread.png)
+
+##### Depth of coverage, reference K.Pneumoniae MGH78578, plasmid three
+<img align="center" src="images/depthOfCoverage_MGH78578-p3_longread.png" width="450" > ![](depthOfCoverage_MGH78578-p3_longread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p3_shortread.png" width="450" > ![](depthOfCoverage_MGH78578-p3_shortread.png)
+
+##### Depth of coverage, reference K.Pneumoniae MGH78578, plasmid four
+<img align="center" src="images/depthOfCoverage_MGH78578-p4_longread.png" width="450" > ![](depthOfCoverage_MGH78578-p4_longread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p4_shortread.png" width="450" > ![](depthOfCoverage_MGH78578-p4_shortread.png)
+
+##### Depth of coverage, reference K.Pneumoniae MGH78578, plasmid five
+<img align="center" src="images/depthOfCoverage_MGH78578-p5_longread.png" width="450" > ![](depthOfCoverage_MGH78578-p5_longread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p5_shortread.png" width="450" > ![](depthOfCoverage_MGH78578-p5_shortread.png)
+
+The coverage plots clearly explain the fragmentation of the MGH78578 assemblies as well as the missing assemblies of the five plasmids due to many regions with no coverage. In fact, 11.24% and 10.92% of the MGH78578 reference has no coverage by longreads and shortreads, respectively.
+
+#### Results from Quast
 
 ***
 # Acquisition of more complex input data
