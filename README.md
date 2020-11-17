@@ -95,32 +95,32 @@ From the dotplots it is clearly visible that:
 The following plots depict the average (across a specific resolution, e.g. 10 kBp intervals) depth of coverage of the references. The left side shows longread coverage while the right side shows short read coverage.
 
 ##### Depth of coverage, reference E.Coli CFT073
-<img align="center" src="images/depthOfCoverage_CFT073_longread.png" width="450" > ![](depthOfCoverage_CFT073_longread.png)
-<img align="center" src="images/depthOfCoverage_CFT073_shortread.png" width="450" > ![](depthOfCoverage_CFT073_shortread.png)
+<img align="center" src="images/depthOfCoverage_CFT073_longread.png" width="400" > ![](depthOfCoverage_CFT073_longread.png)
+<img align="center" src="images/depthOfCoverage_CFT073_shortread.png" width="400" > ![](depthOfCoverage_CFT073_shortread.png)
 
 ##### Depth of coverage, reference K.Pneumoniae MGH78578, genome
-<img align="center" src="images/depthOfCoverage_MGH78578-chr_longread.png" width="450" > ![](depthOfCoverage_MGH78578-chr_longread.png)
-<img align="center" src="images/depthOfCoverage_MGH78578-chr_shortread.png" width="450" > ![](depthOfCoverage_MGH78578-chr_shortread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-chr_longread.png" width="400" > ![](depthOfCoverage_MGH78578-chr_longread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-chr_shortread.png" width="400" > ![](depthOfCoverage_MGH78578-chr_shortread.png)
 
 ##### Depth of coverage, reference K.Pneumoniae MGH78578, plasmid one
-<img align="center" src="images/depthOfCoverage_MGH78578-p1_longread.png" width="450" > ![](depthOfCoverage_MGH78578-p1_longread.png)
-<img align="center" src="images/depthOfCoverage_MGH78578-p1_shortread.png" width="450" > ![](depthOfCoverage_MGH78578-p1_shortread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p1_longread.png" width="400" > ![](depthOfCoverage_MGH78578-p1_longread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p1_shortread.png" width="400" > ![](depthOfCoverage_MGH78578-p1_shortread.png)
 
 ##### Depth of coverage, reference K.Pneumoniae MGH78578, plasmid two
-<img align="center" src="images/depthOfCoverage_MGH78578-p2_longread.png" width="450" > ![](depthOfCoverage_MGH78578-p2_longread.png)
-<img align="center" src="images/depthOfCoverage_MGH78578-p2_shortread.png" width="450" > ![](depthOfCoverage_MGH78578-p2_shortread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p2_longread.png" width="400" > ![](depthOfCoverage_MGH78578-p2_longread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p2_shortread.png" width="400" > ![](depthOfCoverage_MGH78578-p2_shortread.png)
 
 ##### Depth of coverage, reference K.Pneumoniae MGH78578, plasmid three
-<img align="center" src="images/depthOfCoverage_MGH78578-p3_longread.png" width="450" > ![](depthOfCoverage_MGH78578-p3_longread.png)
-<img align="center" src="images/depthOfCoverage_MGH78578-p3_shortread.png" width="450" > ![](depthOfCoverage_MGH78578-p3_shortread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p3_longread.png" width="400" > ![](depthOfCoverage_MGH78578-p3_longread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p3_shortread.png" width="400" > ![](depthOfCoverage_MGH78578-p3_shortread.png)
 
 ##### Depth of coverage, reference K.Pneumoniae MGH78578, plasmid four
-<img align="center" src="images/depthOfCoverage_MGH78578-p4_longread.png" width="450" > ![](depthOfCoverage_MGH78578-p4_longread.png)
-<img align="center" src="images/depthOfCoverage_MGH78578-p4_shortread.png" width="450" > ![](depthOfCoverage_MGH78578-p4_shortread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p4_longread.png" width="400" > ![](depthOfCoverage_MGH78578-p4_longread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p4_shortread.png" width="400" > ![](depthOfCoverage_MGH78578-p4_shortread.png)
 
 ##### Depth of coverage, reference K.Pneumoniae MGH78578, plasmid five
-<img align="center" src="images/depthOfCoverage_MGH78578-p5_longread.png" width="450" > ![](depthOfCoverage_MGH78578-p5_longread.png)
-<img align="center" src="images/depthOfCoverage_MGH78578-p5_shortread.png" width="450" > ![](depthOfCoverage_MGH78578-p5_shortread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p5_longread.png" width="400" > ![](depthOfCoverage_MGH78578-p5_longread.png)
+<img align="center" src="images/depthOfCoverage_MGH78578-p5_shortread.png" width="400" > ![](depthOfCoverage_MGH78578-p5_shortread.png)
 
 The coverage plots clearly explain the fragmentation of the MGH78578 assemblies as well as the missing assemblies of the five plasmids due to many regions with no coverage. In fact, 11.24% and 10.92% of the MGH78578 reference has no coverage by longreads and shortreads, respectively.
 
