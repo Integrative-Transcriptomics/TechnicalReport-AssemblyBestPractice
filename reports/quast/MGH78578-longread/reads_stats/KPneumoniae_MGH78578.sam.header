@@ -1,8 +1,0 @@
-@HD	VN:1.3
-@SQ	SN:NC_009648.1	LN:5315120
-@SQ	SN:NC_009649.1	LN:175879
-@SQ	SN:NC_009650.1	LN:107576
-@SQ	SN:NC_009651.1	LN:88582
-@SQ	SN:NC_009652.1	LN:4259
-@SQ	SN:NC_009653.1	LN:3478
-@PG	ID:minimap2	PN:minimap2	CL:minimap2 -t 1 -ax map-ont /scratch/hackl/Forschungsprojekt/output/KPneumoniae-MGH78578/quast_longread/quast_corrected_input/KPneumoniae_MGH78578.fasta /scratch/hackl/Forschungsprojekt/Data/ONT-reads/KPneumoniae-MGH78578/SRR8494915.fastq	VN:2.17-r974-dirty

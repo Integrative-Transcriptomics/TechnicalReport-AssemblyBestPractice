@@ -1,4 +1,0 @@
-@HD	VN:1.3
-@SQ	SN:tig00000001	LN:5330918
-@SQ	SN:tig00000002	LN:256899
-@PG	ID:minimap2	PN:minimap2	CL:minimap2 -t 1 -ax map-ont /scratch/hackl/Forschungsprojekt/output/KPneumoniae-MGH78578/quast_longread/quast_corrected_input/Canu.fasta /scratch/hackl/Forschungsprojekt/Data/ONT-reads/KPneumoniae-MGH78578/SRR8494915.fastq	VN:2.17-r974-dirty

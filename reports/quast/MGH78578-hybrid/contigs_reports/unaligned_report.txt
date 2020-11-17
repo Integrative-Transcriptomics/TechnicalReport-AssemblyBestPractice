@@ -1,8 +1,0 @@
-All statistics are based on contigs of size >= 500 bp, unless otherwise noted (e.g., "# contigs (>= 0 bp)" and "Total length (>= 0 bp)" include all contigs).
-
-Assembly                       Haslr  Unicycler_hybrid
-# fully unaligned contigs      0      4               
-Fully unaligned length         0      10852           
-# partially unaligned contigs  1      5               
-Partially unaligned length     81536  489192          
-# N's                          0      0               
