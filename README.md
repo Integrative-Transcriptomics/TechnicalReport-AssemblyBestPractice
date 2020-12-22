@@ -126,7 +126,12 @@ The following table depicts the percentages (relative to the reference genome le
 
 ### Trycycler runs
 
-For all Trycycler runs all of the respective longread assemblies were used as input. In some cases whole assemblies or some contigs had to be deleted.
+For all Trycycler runs all of the respective longread assemblies were used as input. In some cases whole assemblies or some contigs had to be deleted due to dissimilarities:
+  - The reconcile step showed a circularization issue for the Canu assemblies that were polished with Medaka of the E. coli and K. pneumoniae references. Thus for the two references the original Canu assemblies were used.
+  - The original Canu assemblies still showed circularization issues for the mentioned references, which, however, were resolved by increasing the maximal trimming length for circularization to 100,000 bp.
+  - One contig of the Unicycler assembly of the K. pneumoniae reference was clustered alone, thus it showed no similarity with the contigs of the other assemblers and was removed.
+  - One contig of the Canu assembly of the K. pneumoniae reference showed nearly the double length of the contigs it was clustered with, thus it was removed.
+  - The contigs of the Unicycler and Raven assemblies of the E. coli reference exhibit an indel of size close to 800. This issue was resolved by increasing the maximal allowed indel length to the respective value.
 
 ### Quast results
 
