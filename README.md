@@ -132,6 +132,7 @@ For all Trycycler runs all of the respective longread assemblies were used as in
   - One contig of the Unicycler assembly of the K. pneumoniae reference was clustered alone, thus it showed no similarity with the contigs of the other assemblers and was removed.
   - One contig of the Canu assembly of the K. pneumoniae reference showed nearly the double length of the contigs it was clustered with, thus it was removed.
   - The contigs of the Unicycler and Raven assemblies of the E. coli reference exhibit an indel of size close to 800. This issue was resolved by increasing the maximal allowed indel length to the respective value.
+  - The very short contig that was produced by the Raven assembler for the S. aureus reference was clustered with one contig of the Unicycler assembly. Thus it was retained.
 
 ### Quast results
 
@@ -155,19 +156,19 @@ In addition the number of contigs differed much for the hybrid versus longread a
 
 The most significant differences of the assemblies were detected in the number of indels, mismatches and the number of genes that were predicted by GeneMarkS as well as the number of annotated genes that are being completely recovered from the assemblies. These features are depicted below: 
 
-<img align="center" src="images/quast-CFT073.png" width="450" > ![](quast-CFT073.png)
-<img align="center" src="images/quast-MGH78578.png" width="450" > ![](quast-MGH78578.png)
+<img align="center" src="images/quast-CFT073.png" width="400" > ![](quast-CFT073.png)
+<img align="center" src="images/quast-MGH78578.png" width="400" > ![](quast-MGH78578.png)
 
-<img align="center" src="images/quast-RN4220old.png" width="450" > ![](quast-RN4220old.png)
-<img align="center" src="images/quast-RN4220new.png" width="450" > ![](quast-RN4220new.png)
+<img align="center" src="images/quast-RN4220old.png" width="400" > ![](quast-RN4220old.png)
+<img align="center" src="images/quast-RN4220new.png" width="400" > ![](quast-RN4220new.png)
 
   - From the pictures it is clearly visible that the number of predicted genes exceeds the number of annotated genes for the longread assemblies, except the S. aureus assembly with higher quality longreads. On the example of the CFT073 Canu and Unicycler (hybrid) assemblies it was investigated how many of the predicted genes are located inside an annotated/*true* gene and how the lengths of the annotated/*true* genes are distributed.
 
-<img align="center" src="images/geneOverlaps-Canu-CFT073.png" width="450" > ![](geneOverlaps-Canu-CFT073.png)
-<img align="center" src="images/geneLengths-Canu-CFT073.png" width="450" > ![](geneLengths-Canu-CFT073.png)
+<img align="center" src="images/geneOverlaps-Canu-CFT073.png" width="400" > ![](geneOverlaps-Canu-CFT073.png)
+<img align="center" src="images/geneLengths-Canu-CFT073.png" width="400" > ![](geneLengths-Canu-CFT073.png)
 
-<img align="center" src="images/geneOverlapgs-UnicHybrid-CFT073.png" width="450" > ![](geneOverlapgs-UnicHybrid-CFT073.png)
-<img align="center" src="images/geneLengths-UnicHybrid-CFT073.png" width="450" > ![](geneLengths-UnicHybrid-CFT073.png)
+<img align="center" src="images/geneOverlapgs-UnicHybrid-CFT073.png" width="400" > ![](geneOverlapgs-UnicHybrid-CFT073.png)
+<img align="center" src="images/geneLengths-UnicHybrid-CFT073.png" width="400" > ![](geneLengths-UnicHybrid-CFT073.png)
 
 The investigation reveals that indeed the predicted genes are much shorter than the annotated genes and multiple predicted genes are located inside annotated genes for the longread E. coli assembly. It can be suggested, that the low longread quality, which may have also led to the high number of mismatches, disturb the GeneMarkS prediction. However, here it is questionable why Quast reports the annotated genes as being completely recovered.
 
