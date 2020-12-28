@@ -16,7 +16,7 @@ The final goal of the project is the elaboration of a best practice (possibly co
 
 - [Literature research and acquisition of reference data](#literature-research-and-acquisition-of-reference-data) :heavy_check_mark:
 - [Assembly of reference datasets](#assembly-of-reference-datasets) :heavy_check_mark:
-- [Downsampling of reads to decrease coverage depth](#downsampling-of-reads-to-decrease-coverage-depth)
+- [Downsampling of reads to decrease coverage depth](#downsampling-of-reads-to-decrease-coverage-depth) :heavy_check_mark:
 - [Detection of SNPs](#detection-of-snps)
 - [Conclusion and best practice](#conclusion-and-best-practice)
 - [References](#references)
