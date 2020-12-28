@@ -71,7 +71,7 @@ Furthermore, all assemblies were evaluated on a finer level with Quast: Quast pr
 
 ### FastQC readquality
 
-The FastQC reports revealed mean short read qualities of above 28 for all samples and all read positions and long read qualities of ranging from 12 to 18 for the E. coli and K. pneumoniae reads, 14 to 24 for the old basecaller version S. aureus reads and 14 to 32 for the new basecaller version S. aureus reads.
+The FastQC reports revealed mean short read qualities of above 28 for all samples and all read positions and long read qualities ranging from 12 to 18 for the E. coli and K. pneumoniae reads, 14 to 24 for the old basecaller version S. aureus reads and 14 to 32 for the new basecaller version S. aureus reads.
 
 ### Depth of coverage across references
 
@@ -111,7 +111,7 @@ As the S. aureus reference genome was highly fragmented it was decided to depict
 <img align="center" src="images/depthOfCoverage_RN4220_shortread.png" width="400" > ![](depthOfCoverage_RN4220_shortread.png)
 <img align="center" src="images/depthOfCoverage_RN4220_shortread.png" width="400" > ![](depthOfCoverage_RN4220_longread_old.png)
 
-The following table depicts the percentages (relative to the reference genome length) of zero coverage depth of read sets.
+The following table depicts the percentages (relative to the reference genome length) of zero coverage depth of the read sets.
 
 |           | E. coli CFT073 | K. pneumoniae MGH78578 | S. aureus RN4220              |
 |-----------|----------------|------------------------|-------------------------------|
