@@ -226,7 +226,12 @@ For each of the subsamples all assemblers (except HASLR) were run. For each cove
 <img align="center" src="images/downsampling_features.png" width="400" > ![](downsampling_features.png)
 
 ## Conclusion
-
+  - Down to a coverage of 40 X the assemblers could finish the assemblies correctly and the assembly statistics, regarding the quast report, do not deviate significantly from the full data set.
+  - The unicycler hybrid approach was (due to using short reads) able to finish the assembly with all downsamplis, but interestingly the number of contigs increased for lower coverages. This implies an important role of longreads for the contiguity of the assemblies.
+  - For samples below 40X, Trycycler was unable to complete the reconcile step. In general, the lower the coverage, the less assemblers were able to complete the assembly.
+  - However, the significant drops in performance for samples with < 6 X coverage may be mainly due to large fractions of the genome being not covered by at least one read. On the other hand one also observes perfomrance drops for samples with low coverage, but < 1% of the genome being not covered by at leas one read.
+  - Finally, the results show, that a coverage of 40 X to 80 X may be sufficient to yield nearly optimal results.
+  
 ***
 # Detection of SNPs
 
