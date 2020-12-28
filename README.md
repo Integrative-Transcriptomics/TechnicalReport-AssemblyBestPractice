@@ -185,9 +185,15 @@ Above all we do not see that one specific assembler outperforms all other assemb
 
 ## Procedure
 
-Next the effect of the coverage depth of longreads on the assemblies is investigated. For this it was decided to consider the E. coli CFT073 reference as this is the only reference with a very good coverage of the reference. The tool [**Rasusa**](https://github.com/mbhall88/rasusa) was used to generate subsamples of the longreads with 200X, 150X, 100X, 80X, 60X, 40X, 20X, 15X, 10X, 8X and 6X coverage depth. For each of the subsamples all assemblers (except HASLR) were run. 
+Next the effect of the coverage depth of longreads on the assemblies is investigated. For this it was decided to consider the E. coli CFT073 reference as this is the only reference with a very good coverage of the reference. The tool [**Rasusa**](https://github.com/mbhall88/rasusa) was used to generate subsamples of the longreads with 200X, 150X, 100X, 80X, 60X, 40X, 20X, 15X, 10X, 8X, 6X, 4X, 2X and 1X coverage depth. For each of the subsamples all assemblers (except HASLR) were run. For each coverage depth a Quast report comprising all assemblies was generated.
 
 ## Results
+
+<img align="center" src="images/downsampling_indels.png" width="400" > ![](downsampling_indels.png)
+<img align="center" src="images/downsampling_mismatches.png" width="400" > ![](downsampling_mismatches.png)
+<img align="center" src="images/downsampling_contigs.png" width="400" > ![](downsampling_contigs.png)
+<img align="center" src="images/downsampling_fraction.png" width="400" > ![](downsampling_fraction.png)
+<img align="center" src="images/downsampling_features.png" width="400" > ![](downsampling_features.png)
 
 ## Conclusion
 
@@ -214,4 +220,4 @@ Next the effect of the coverage depth of longreads on the assemblies is investig
 
 <sup>5</sup> [De Maio N, Shaw LP, Hubbard A, et al. *Comparison of long-read sequencing technologies in the hybrid assembly of complex bacterial genomes.* Microb Genom. 5(9), 2019.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6807382/)
 
-<sup>6</sup>[Dhanalakshmi Nair, Guido Memmi, et al. *Whole-Genome Sequencing of Staphylococcus aureus Strain RN4220, a Key Laboratory Strain Used in Virulence Research, Identifies Mutations That Affect Not Only Virulence Factors but Also the Fitness of the Strain* Journal of Bacteriology  193 (9), Apr 2011 (https://jb.asm.org/content/193/9/2332)
+<sup>6</sup>[Dhanalakshmi Nair, Guido Memmi, et al. *Whole-Genome Sequencing of Staphylococcus aureus Strain RN4220, a Key Laboratory Strain Used in Virulence Research, Identifies Mutations That Affect Not Only Virulence Factors but Also the Fitness of the Strain* Journal of Bacteriology  193 (9), Apr 2011](https://jb.asm.org/content/193/9/2332)
