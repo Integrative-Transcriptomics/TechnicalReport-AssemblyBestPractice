@@ -55,7 +55,7 @@ Reference genomes, comprising [*Escherichia coli* strain CFT073](https://www.ncb
 
 ## Procedure
 
-Before the assemblies were conducted, possible adapters of the ONT reads were removed using Porechop and the quality of all reads was validated using FastQC. For each of the reference genomes, short- and long-reads were mapped against the reference using bwa and a depth of coverage plot was created to get insights into which genomic regions are actually supported by the input data.
+Before the assemblies were conducted, possible adapters of the ONT reads were removed using Porechop and the quality of all reads was validated using FastQC. For each of the reference genomes, short- and long-reads were mapped against the reference using minimap2, the depth of coverage was calculated using samtools depth and a depth of coverage plot was created to get insights into which genomic regions are actually supported by the input data.
 
 Next, all of the above listed tools were run with each of the reference datasets. For *S. aureus* two assemblies were run, one with the old and one with the newer reads (regarding the basecaller version):
   - As all tools except canu, which performs an internal read correction, were described as being applicable to raw reads, no pre-assembly longread correction was performed.
@@ -111,12 +111,17 @@ As the S. aureus reference genome was highly fragmented it was decided to depict
 <img align="center" src="images/depthOfCoverage_RN4220_shortread.png" width="400" > ![](depthOfCoverage_RN4220_shortread.png)
 <img align="center" src="images/depthOfCoverage_RN4220_shortread.png" width="400" > ![](depthOfCoverage_RN4220_longread_old.png)
 
-The following table depicts the percentages (relative to the reference genome length) of zero coverage depth of the read sets.
+The following table depicts the percentages (relative to the reference genome length) of zero coverage depth and the mean coverage across the whole reference genome of the different read sets.
 
-|           | E. coli CFT073 | K. pneumoniae MGH78578 | S. aureus RN4220              |
-|-----------|----------------|------------------------|-------------------------------|
-| shorteads | 0.046 %        | 10.924 %               | 0.006 %                       |
-| longreads | 0.0 %          | 11.238 %               | 0.008 % (old) / 0.005 % (new) |
+| read set                           | genome fraction with 0X coverage | mean coverage across genome |
+|------------------------------------|:--------------------------------:|:---------------------------:|
+| E. coli CFT073, shortreads         |                          0.046 % |                     93.09 X |
+| E. coli CFT073, longreads          |                          0.000 % |                    244.72 X |
+| K. pneumoniae MGH78578, shortreads |                         10.924 % |                     69.35 X |
+| K. pneumoniae MGH78578, longreads  |                         11.238 % |                    239.32 X |
+| S. aureus RN4220, shortreads       |                          0.006 % |                    499.03 X |
+| S. aureus RN4220, longreads (old)  |                          0.008 % |                    528.24 X |
+| S. aureus RN4220, longreads (new)  |                          0.005 % |                    534.18 X |
 
 ### Completion of assemblies
 
@@ -185,9 +190,34 @@ Above all we do not see that one specific assembler outperforms all other assemb
 
 ## Procedure
 
-Next the effect of the coverage depth of longreads on the assemblies is investigated. For this it was decided to consider the E. coli CFT073 reference as this is the only reference with a very good coverage of the reference. The tool [**Rasusa**](https://github.com/mbhall88/rasusa) was used to generate subsamples of the longreads with 200X, 150X, 100X, 80X, 60X, 40X, 20X, 15X, 10X, 8X, 6X, 4X, 2X and 1X coverage depth. For each of the subsamples all assemblers (except HASLR) were run. For each coverage depth a Quast report comprising all assemblies was generated.
+Next the effect of the coverage depth of longreads on the assemblies is investigated. For this it was decided to consider the E. coli CFT073 reference as this is the only reference with a very good coverage of the reference. The tool [**Rasusa**](https://github.com/mbhall88/rasusa) was used to generate subsamples of the longreads with 200X, 150X, 100X, 80X, 60X, 40X, 20X, 15X, 10X, 8X, 6X, 4X, 2X and 1X coverage depth. 
+
+Similar as the procedure applied to the reference read sets, each downsample was mapped against the E. coli CFT073 reference genome using minimap2 and the per base depth of coverage was measured using samtools depth. From this data, the mean depth of coverage (the sum of per base coverage depths divided by the genome length) was calculated. In addition the genomic fraction with zero coverage was determined.
+
+For each of the subsamples all assemblers (except HASLR) were run. For each coverage depth a Quast report comprising all assemblies was generated.
 
 ## Results
+
+### Depth of coverage control
+
+| E. coli CFT073 downsample intended coverage | genome fraction with 0X coverage | mean coverage across genome |
+|---------------------------------------------|----------------------------------|-----------------------------|
+|                                        200X |                          0.000 % |                    187.95 X |
+|                                        150X |                          0.000 % |                    140.93 X |
+|                                        100X |                          0.000 % |                     93.92 X |
+|                                         80X |                          0.000 % |                     75.18 X |
+|                                         60X |                          0.000 % |                     56.33 X |
+|                                         40X |                          0.001 % |                     37.58 X |
+|                                         20X |                          0.001 % |                     18.82 X |
+|                                         15X |                          0.002 % |                     13.54 X |
+|                                         10X |                          0.010 % |                      9.07 X |
+|                                          8X |                          0.233 % |                      7.24 X |
+|                                          6X |                          0.672 % |                      5.44 X |
+|                                          4X |                          1.844 % |                      3.77 X |
+|                                          2X |                         14.345 % |                      1.88 X |
+|                                          1X |                         38.647 % |                      0.94 X |
+
+### Quast results
 
 <img align="center" src="images/downsampling_indels.png" width="400" > ![](downsampling_indels.png)
 <img align="center" src="images/downsampling_mismatches.png" width="400" > ![](downsampling_mismatches.png)
