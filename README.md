@@ -17,8 +17,8 @@ The final goal of the project is the elaboration of a best practice (possibly co
 - [Literature research and acquisition of reference data](#literature-research-and-acquisition-of-reference-data) :heavy_check_mark:
 - [Assembly of reference datasets](#assembly-of-reference-datasets) :heavy_check_mark:
 - [Downsampling of reads to decrease coverage depth](#downsampling-of-reads-to-decrease-coverage-depth) :heavy_check_mark:
-- [Detection of SNPs](#detection-of-snps)
-- [Conclusion and best practice](#conclusion-and-best-practice)
+- [Detection of SNPs](#detection-of-snps) :heavy_check_mark:
+- [Conclusion and best practice](#conclusion-and-best-practice) :heavy_check_mark:
 - [References](#references)
 &nbsp;
 ***
@@ -190,15 +190,18 @@ Above all we do not see that one specific assembler outperforms all other assemb
 
 ## Procedure
 
-Next the effect of the coverage depth of longreads on the assemblies is investigated. For this it was decided to consider the E. coli CFT073 reference as this is the only reference with a very good coverage of the reference. The tool [**Rasusa**](https://github.com/mbhall88/rasusa) was used to generate subsamples of the longreads with 200X, 150X, 100X, 80X, 60X, 40X, 20X, 15X, 10X, 8X, 6X, 4X, 2X and 1X coverage depth. 
+Next the effect of the coverage depth of longreads on the assembly quality was investigated. The tool [**Rasusa**](https://github.com/mbhall88/rasusa) was used to generate subsamples of the longreads with intended 200X, 150X, 100X, 80X, 60X, 40X, 20X, 15X, 10X, 8X, 6X, 4X, 2X and 1X coverage depth. Firtstly, the E. coli CFT073 reference set was investigated, due to its completenes regarding the given reference genome:
+- Similar as the procedure applied to the reference read sets, each downsampled read set was mapped against the E. coli CFT073 reference genome using minimap2. Based on this the per base depth of coverage was measured using samtools depth. From this data, the mean depth of coverage (the sum of per base coverage depths divided by the genome length) was calculated. In addition the genomic fraction with zero coverage was determined.
+- For each of the subsamples all assemblers (except HASLR) were run. For each coverage depth a Quast report comprising all assemblies was generated.
 
-Similar as the procedure applied to the reference read sets, each downsample was mapped against the E. coli CFT073 reference genome using minimap2 and the per base depth of coverage was measured using samtools depth. From this data, the mean depth of coverage (the sum of per base coverage depths divided by the genome length) was calculated. In addition the genomic fraction with zero coverage was determined.
+Secondly, the downsampling was conducted for the S. aureus RN4220 reference set to investigate the effect of the improved basecaller (and thus read quality) on the downsampling.
+- Here, only the hybrid approach of Unicycler was used for assembly as it yielded the best results in the previous steps.
 
-For each of the subsamples all assemblers (except HASLR) were run. For each coverage depth a Quast report comprising all assemblies was generated.
-
+TODO: Check actual coverage of S. aureus downsamples and update x-labels on plots.
+ 
 ## Results
 
-### Depth of coverage control
+### Depth of coverage control - E. coli subsamples
 
 | E. coli CFT073 downsample intended coverage | genome fraction with 0X coverage | mean coverage across genome |
 |---------------------------------------------|----------------------------------|-----------------------------|
@@ -217,32 +220,59 @@ For each of the subsamples all assemblers (except HASLR) were run. For each cove
 |                                          2X |                         14.345 % |                      1.88 X |
 |                                          1X |                         38.647 % |                      0.94 X |
 
-### Quast results
+### Quast results - E. coli subsamples
 
-<img align="center" src="images/downsampling_indels.png" width="400" > ![](downsampling_indels.png)
-<img align="center" src="images/downsampling_mismatches.png" width="400" > ![](downsampling_mismatches.png)
-<img align="center" src="images/downsampling_contigs.png" width="400" > ![](downsampling_contigs.png)
-<img align="center" src="images/downsampling_fraction.png" width="400" > ![](downsampling_fraction.png)
-<img align="center" src="images/downsampling_features.png" width="400" > ![](downsampling_features.png)
+<img align="center" src="images/quast-subsample-CFT073.png" width="800" > ![](quast-subsample-CFT073.png)
+
+### Depth of coverage control - S. aureus subsamples
+
+### Quast results - S. aureus subsamples
+
+<img align="center" src="images/quast-subsample-RN4220.png" width="800" > ![](quast-subsample-RN4220.png)
 
 ## Conclusion
   - Down to a coverage of 40 X the assemblers could finish the assemblies correctly and the assembly statistics, regarding the quast report, do not deviate significantly from the full data set.
-  - The unicycler hybrid approach was (due to using short reads) able to finish the assembly with all downsamplis, but interestingly the number of contigs increased for lower coverages. This implies an important role of longreads for the contiguity of the assemblies.
+  - The unicycler hybrid approach was (due to using short reads) able to finish the assembly with all downsamples, but interestingly the number of contigs increased for lower coverages. This implies an important role of longreads for the contiguity of the assemblies.
   - For samples below 40X, Trycycler was unable to complete the reconcile step. In general, the lower the coverage, the less assemblers were able to complete the assembly.
   - However, the significant drops in performance for samples with < 6 X coverage may be mainly due to large fractions of the genome being not covered by at least one read. On the other hand one also observes perfomrance drops for samples with low coverage, but < 1% of the genome being not covered by at leas one read.
-  - Finally, the results show, that a coverage of 40 X to 80 X may be sufficient to yield nearly optimal results.
+  - Finally, the results show, that a coverage of 40 X to 80 X may be sufficient to yield optimal results.
+  - Regarding the improved basecaller quality of the S. aureus downsamples it is evident, that the higher quality reads enabled a more contigous assembly even at low coverages below 6X due to reduced number of contigs and a higher genome fraction and discovered genomic features. However, the number of mismatches increased slightly. This may presumably be due to higher fraction of the genome being completely assembled and thus being available for evaluating the number of mismatches at all. 
   
 ***
 # Detection of SNPs
 
+TODO
+
 ## Procedure
+
+TODO
 
 ## Results
 
+##### Comparison of SNP sets detected by mapping different read sets to the reference genome, SNPs with any quality (QUAL) used
+<img align="center" src="images/venn-reads-anyQUAL.png" width="500" > ![](venn-reads-anyQUAL.png)
+
+##### Comparison of SNP sets detected using different read sets to the reference genome, SNPs with quality (QUAL) higher or equal to 100 used
+<img align="center" src="images/venn-reads-100QUAL.png" width="500" > ![](venn-reads-100QUAL.png)
+
+##### Comparison of SNP sets detected using different read sets to the reference genome, SNPs with quality (QUAL) higher or equal to 200 used
+<img align="center" src="images/venn-reads-200QUAL.png" width="500" > ![](venn-reads-200QUAL.png)
+
+##### Comparison of the SNPs detected using any read set (SNPs with any quality (QUAL)) and the SNPs derived by computing a WGA using mauve or mapping by MUMmer, using the assembly of the Unicycler hybrid approach, respectively
+<img align="center" src="images/venn-reads-assembly-anyQUAL.png" width="500" > ![](venn-reads-assembly-anyQUAL.png)
+
+##### Comparison of the SNPs detected using any read set (SNPs with quality (QUAL) higher or equal to 200 used) and the SNPs derived by computing a WGA using mauve or mapping by MUMmer, using the assembly of the Unicycler hybrid approach, respectively
+<img align="center" src="images/venn-reads-assembly-200QUAL.png" width="500" > ![](venn-reads-assembly-200QUAL.png)
+
+
 ## Conclusion
 
+TODO
+
 ***
-# Conclusion and best practice
+# Summary and best practice
+
+TODO
 ***
 ## References
 <sup>1</sup> [Alice Maria Giani, et al. *Long walk to genomics: History and current approaches to genome sequencing and assembly.* Computational and Structural Biotechnology Journal, Volume 18, Pages 9-19, 2020.](https://www.sciencedirect.com/science/article/pii/S2001037019303277)
