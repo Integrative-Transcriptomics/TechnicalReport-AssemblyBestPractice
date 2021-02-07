@@ -241,7 +241,7 @@ TODO: Check actual coverage of S. aureus downsamples and update x-labels on plot
 ***
 # Detection of SNPs
 
-It was assesed in which extend the use of longreads, shortreads or both influences the detection of SNPs relative to the used reference genomes. Thereby, the main questions were (a) wether using longreads only would result in the same SNP calls as using shortreads only and (b) if the SNP sets derived from mapping reads directly match those derived from comparing the reference genome with the most qualitative assembly computed using the Unicycler hybrid approach.  
+It was assesed in which extend the use of longreads, shortreads or both influences the detection of SNPs relative to the used reference genomes. Thereby, the main question was if using longreads only would result in the same SNP calls as using shortreads only. To validate the derived SNP sets they were compared to those derived from comparing the reference genome with the most qualitative assembly computed using the Unicycler hybrid approach using mauve and MUMmer.  
 
 ## Procedure
 
