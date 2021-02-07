@@ -16,7 +16,7 @@ The final goal of the project is the elaboration of a best practice (possibly co
 
 - [Literature research and acquisition of reference data](#literature-research-and-acquisition-of-reference-data) :heavy_check_mark:
 - [Assembly of reference datasets](#assembly-of-reference-datasets) :heavy_check_mark:
-- [Downsampling of reads to decrease coverage depth](#downsampling-of-reads-to-decrease-coverage-depth)
+- [Downsampling of reads to decrease coverage depth](#downsampling-of-reads-to-decrease-coverage-depth) :heavy_check_mark:
 - [Detection of SNPs](#detection-of-snps)
 - [Conclusion and best practice](#conclusion-and-best-practice)
 - [References](#references)
@@ -55,7 +55,7 @@ Reference genomes, comprising [*Escherichia coli* strain CFT073](https://www.ncb
 
 ## Procedure
 
-Before the assemblies were conducted, possible adapters of the ONT reads were removed using Porechop and the quality of all reads was validated using FastQC. For each of the reference genomes, short- and long-reads were mapped against the reference using bwa and a depth of coverage plot was created to get insights into which genomic regions are actually supported by the input data.
+Before the assemblies were conducted, possible adapters of the ONT reads were removed using Porechop and the quality of all reads was validated using FastQC. For each of the reference genomes, short- and long-reads were mapped against the reference using minimap2, the depth of coverage was calculated using samtools depth and a depth of coverage plot was created to get insights into which genomic regions are actually supported by the input data.
 
 Next, all of the above listed tools were run with each of the reference datasets. For *S. aureus* two assemblies were run, one with the old and one with the newer reads (regarding the basecaller version):
   - As all tools except canu, which performs an internal read correction, were described as being applicable to raw reads, no pre-assembly longread correction was performed.
@@ -71,7 +71,7 @@ Furthermore, all assemblies were evaluated on a finer level with Quast: Quast pr
 
 ### FastQC readquality
 
-The FastQC reports revealed mean short read qualities of above 28 for all samples and all read positions and long read qualities of ranging from 12 to 18 for the E. coli and K. pneumoniae reads, 14 to 24 for the old basecaller version S. aureus reads and 14 to 32 for the new basecaller version S. aureus reads.
+The FastQC reports revealed mean short read qualities of above 28 for all samples and all read positions and long read qualities ranging from 12 to 18 for the E. coli and K. pneumoniae reads, 14 to 24 for the old basecaller version S. aureus reads and 14 to 32 for the new basecaller version S. aureus reads.
 
 ### Depth of coverage across references
 
@@ -111,12 +111,17 @@ As the S. aureus reference genome was highly fragmented it was decided to depict
 <img align="center" src="images/depthOfCoverage_RN4220_shortread.png" width="400" > ![](depthOfCoverage_RN4220_shortread.png)
 <img align="center" src="images/depthOfCoverage_RN4220_shortread.png" width="400" > ![](depthOfCoverage_RN4220_longread_old.png)
 
-The following table depicts the percentages (relative to the reference genome length) of zero coverage depth of read sets.
+The following table depicts the percentages (relative to the reference genome length) of zero coverage depth and the mean coverage across the whole reference genome of the different read sets.
 
-|           | E. coli CFT073 | K. pneumoniae MGH78578 | S. aureus RN4220              |
-|-----------|----------------|------------------------|-------------------------------|
-| shorteads | 0.046 %        | 10.924 %               | 0.006 %                       |
-| longreads | 0.0 %          | 11.238 %               | 0.008 % (old) / 0.005 % (new) |
+| read set                           | genome fraction with 0X coverage | mean coverage across genome |
+|------------------------------------|:--------------------------------:|:---------------------------:|
+| E. coli CFT073, shortreads         |                          0.046 % |                     93.09 X |
+| E. coli CFT073, longreads          |                          0.000 % |                    244.72 X |
+| K. pneumoniae MGH78578, shortreads |                         10.924 % |                     69.35 X |
+| K. pneumoniae MGH78578, longreads  |                         11.238 % |                    239.32 X |
+| S. aureus RN4220, shortreads       |                          0.006 % |                    499.03 X |
+| S. aureus RN4220, longreads (old)  |                          0.008 % |                    528.24 X |
+| S. aureus RN4220, longreads (new)  |                          0.005 % |                    534.18 X |
 
 ### Completion of assemblies
 
@@ -185,12 +190,48 @@ Above all we do not see that one specific assembler outperforms all other assemb
 
 ## Procedure
 
-Next the effect of the coverage depth of longreads on the assemblies is investigated. For this it was decided to consider the E. coli CFT073 reference as this is the only reference with a very good coverage of the reference. The tool [**Rasusa**](https://github.com/mbhall88/rasusa) was used to generate subsamples of the longreads with 200X, 150X, 100X, 80X, 60X, 40X, 20X, 15X, 10X, 8X and 6X coverage depth. For each of the subsamples all assemblers (except HASLR) were run. 
+Next the effect of the coverage depth of longreads on the assemblies is investigated. For this it was decided to consider the E. coli CFT073 reference as this is the only reference with a very good coverage of the reference. The tool [**Rasusa**](https://github.com/mbhall88/rasusa) was used to generate subsamples of the longreads with 200X, 150X, 100X, 80X, 60X, 40X, 20X, 15X, 10X, 8X, 6X, 4X, 2X and 1X coverage depth. 
+
+Similar as the procedure applied to the reference read sets, each downsample was mapped against the E. coli CFT073 reference genome using minimap2 and the per base depth of coverage was measured using samtools depth. From this data, the mean depth of coverage (the sum of per base coverage depths divided by the genome length) was calculated. In addition the genomic fraction with zero coverage was determined.
+
+For each of the subsamples all assemblers (except HASLR) were run. For each coverage depth a Quast report comprising all assemblies was generated.
 
 ## Results
 
-## Conclusion
+### Depth of coverage control
 
+| E. coli CFT073 downsample intended coverage | genome fraction with 0X coverage | mean coverage across genome |
+|---------------------------------------------|----------------------------------|-----------------------------|
+|                                        200X |                          0.000 % |                    187.95 X |
+|                                        150X |                          0.000 % |                    140.93 X |
+|                                        100X |                          0.000 % |                     93.92 X |
+|                                         80X |                          0.000 % |                     75.18 X |
+|                                         60X |                          0.000 % |                     56.33 X |
+|                                         40X |                          0.001 % |                     37.58 X |
+|                                         20X |                          0.001 % |                     18.82 X |
+|                                         15X |                          0.002 % |                     13.54 X |
+|                                         10X |                          0.010 % |                      9.07 X |
+|                                          8X |                          0.233 % |                      7.24 X |
+|                                          6X |                          0.672 % |                      5.44 X |
+|                                          4X |                          1.844 % |                      3.77 X |
+|                                          2X |                         14.345 % |                      1.88 X |
+|                                          1X |                         38.647 % |                      0.94 X |
+
+### Quast results
+
+<img align="center" src="images/downsampling_indels.png" width="400" > ![](downsampling_indels.png)
+<img align="center" src="images/downsampling_mismatches.png" width="400" > ![](downsampling_mismatches.png)
+<img align="center" src="images/downsampling_contigs.png" width="400" > ![](downsampling_contigs.png)
+<img align="center" src="images/downsampling_fraction.png" width="400" > ![](downsampling_fraction.png)
+<img align="center" src="images/downsampling_features.png" width="400" > ![](downsampling_features.png)
+
+## Conclusion
+  - Down to a coverage of 40 X the assemblers could finish the assemblies correctly and the assembly statistics, regarding the quast report, do not deviate significantly from the full data set.
+  - The unicycler hybrid approach was (due to using short reads) able to finish the assembly with all downsamplis, but interestingly the number of contigs increased for lower coverages. This implies an important role of longreads for the contiguity of the assemblies.
+  - For samples below 40X, Trycycler was unable to complete the reconcile step. In general, the lower the coverage, the less assemblers were able to complete the assembly.
+  - However, the significant drops in performance for samples with < 6 X coverage may be mainly due to large fractions of the genome being not covered by at least one read. On the other hand one also observes perfomrance drops for samples with low coverage, but < 1% of the genome being not covered by at leas one read.
+  - Finally, the results show, that a coverage of 40 X to 80 X may be sufficient to yield nearly optimal results.
+  
 ***
 # Detection of SNPs
 
@@ -214,4 +255,4 @@ Next the effect of the coverage depth of longreads on the assemblies is investig
 
 <sup>5</sup> [De Maio N, Shaw LP, Hubbard A, et al. *Comparison of long-read sequencing technologies in the hybrid assembly of complex bacterial genomes.* Microb Genom. 5(9), 2019.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6807382/)
 
-<sup>6</sup>[Dhanalakshmi Nair, Guido Memmi, et al. *Whole-Genome Sequencing of Staphylococcus aureus Strain RN4220, a Key Laboratory Strain Used in Virulence Research, Identifies Mutations That Affect Not Only Virulence Factors but Also the Fitness of the Strain* Journal of Bacteriology  193 (9), Apr 2011 (https://jb.asm.org/content/193/9/2332)
+<sup>6</sup>[Dhanalakshmi Nair, Guido Memmi, et al. *Whole-Genome Sequencing of Staphylococcus aureus Strain RN4220, a Key Laboratory Strain Used in Virulence Research, Identifies Mutations That Affect Not Only Virulence Factors but Also the Fitness of the Strain* Journal of Bacteriology  193 (9), Apr 2011](https://jb.asm.org/content/193/9/2332)
