@@ -241,11 +241,22 @@ TODO: Check actual coverage of S. aureus downsamples and update x-labels on plot
 ***
 # Detection of SNPs
 
-TODO
+It was assesed in which extend the use of longreads, shortreads or both influences the detection of SNPs relative to the used reference genomes. Thereby, the main questions were (a) wether using longreads only would result in the same SNP calls as using shortreads only and (b) if the SNP sets derived from mapping reads directly match those derived from comparing the reference genome with the most qualitative assembly computed using the Unicycler hybrid approach.  
 
 ## Procedure
 
-TODO
+It was decided to conduct this study only with the E. coli CFT073 reference data set as for this set the most contigous reference genome and an appropriate read coverage was given and furthermore only investigate base changes and to exclude indels (mainly due to simplicity reasons). Firstly, short- and longreads were mapped to the reference genome using minimap2. The resulting .sam files were sorted and converted to .bam files. These were then used as input for bcftools mpielup command (using -O b, --skip-indels and --max-depth 1000 parameters in order to skip indel calling, produce .bcf formatted output and use all available reads per position, respecitvely) in three modes:
+  - using the mapping of the longreads only 
+  - using the mapping of the shortreads only
+  - using the mapping of both long- and shortreads
+
+The obtained .bcf files were further used as input for the bcftools call command (using --ploidy 1 parameter to account for the haploidity of bacteria) resulting in a .vcf file. 
+
+Next, SNP sets were extracted based on the given QUAL column entry, representing the -10 log<sub>10</sub>( probability of no variant ), being any value, higher or equal than 100 or higher or equal than 200. Thus, the two last filterings yield SNPs with error probabilities of 10<sup>-10</sup> and 10<sup>-20</sup> according to bcftools.
+
+Secondly, additional SNP sets were extraced by (i) computing a whole genome alignment of the reference genome and the Unicycler hybrid assembly and exporting SNPs using mauve (http://darlinglab.org/mauve/mauve.html) and (ii) using the reference genome and the Unicycler hybrid assembly as input for the MUMmer wrapper DNAdiff. The second approach was also used by De Maio et al.<sup>5</sup>, from which the reference E. coli CFT073 read set was taken, to detect SNPs relative to the assembly. Thereby, they detected a total number of 141 SNPs (whereby it is not clear which exact pipeline and parameters were used for the Unicycler assembly and which exact positions in the reference genome were considered as SNPs).
+
+All derived SNP sets were comparatively visualized using Venny (https://bioinfogp.cnb.csic.es/tools/venny/).
 
 ## Results
 
