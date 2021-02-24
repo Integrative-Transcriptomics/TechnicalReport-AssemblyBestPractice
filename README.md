@@ -19,12 +19,38 @@ This repository grants access to the projects report, supplementary data, the mo
 ***
 ***
 # Extended description of methods
-### General note on the file-structure
-### Dependencies
+### General note on the structure of this repository
+Most of the results for this project were obtained by running `bash` scripts and `Jupyter`/`python` notebooks which are supplied in this repository. Some steps were conducted manually and for these the explicit commands will be given below. Not all but the most important results are stored within this repository and can be accessed without re-running the scripts. The structure of the directories reflects the one which is created by running all scripts and should therefore not be changed in order to prevent errors during the execution of the provided scripts. As a naming convention, the prefix _S1_ to _S7_ is used for the main scripts which also give the order in which the scripts are supposed to be run. The _T1_ and _T2_ scripts are helper scripts used during the manual application of Trycycler and a _R_ prefix is used for `Jupyter` notebooks used for pre-processing the generated results file in the respective stages.
+
+### Dependencies and software used
+In the following a tabular overview of all software requirements to reproduce the results of this project are given. As some of the tools were accessible via the systems path variables on which the scripts were run but others were installed locally in a _./tools/_ directory, variables are defined in each script to access the executables of each tool; if necessary these variables can easily be changed in the respective scripts.
+
+| Name | Type | Version | Access | Publication |
+|-|-|-|-|-|
+| FastQC | read quality control | 0.11.5 | [bioinformatics.babraham.ac.uk/projects/fastqc/](bioinformatics.babraham.ac.uk/projects/fastqc/) | - |
+| Porechop | long read trimming | 0.2.4 | [github.com/rrwick/Porechop](github.com/rrwick/Porechop) | - |
+| Pilon | short read polishing | 1.23 | [github.com/broadinstitute/pilon](github.com/broadinstitute/pilon) | [doi.org/10.1371/journal.pone.0112963](doi.org/10.1371/journal.pone.0112963) |
+| Medaka | long read polishing | 1.2.3 | [github.com/nanoporetech/medaka](github.com/nanoporetech/medaka) | - |
+| Unicycler | short-/long read/hybrid assembler | 0.4.9b | [github.com/rrwick/Unicycler](github.com/rrwick/Unicycler) | [doi.org/10.1371/journal.pcbi.1005595](doi.org/10.1371/journal.pcbi.1005595) |
+| Flye | long read assembler | 2.7.1-b1590 | [github.com/fenderglass/Flye](github.com/fenderglass/Flye) | [doi.org/10.1038/s41587-019-0072-8](doi.org/10.1038/s41587-019-0072-8) |
+| Canu | long read assembler | 2.1.1 | [github.com/marbl/canu](github.com/marbl/canu) | [doi.org/10.1101/gr.215087.116](doi.org/10.1101/gr.215087.116) |
+| Raven | long read assembler | 1.2.2 | [github.com/lbcb-sci/raven][github.com/lbcb-sci/raven] | [doi.org/10.1101/2020.08.07.242461](doi.org/10.1101/2020.08.07.242461) |
+| Trycycler | long read consensus | 0.3.3 | [github.com/rrwick/Trycycler](github.com/rrwick/Trycycler) | - |
+| Haslr | hybrid assembler | 0.8a1 | [github.com/vpc-ccg/haslr](github.com/vpc-ccg/haslr) | [doi.org/10.1101/2020.01.27.921817](doi.org/10.1101/2020.01.27.921817) |
+| quast | assembly evaluation | 5.0.2 | [github.com/ablab/quast](github.com/ablab/quast) | [doi.org/10.1093/bioinformatics/bty266](doi.org/10.1093/bioinformatics/bty266) |
+| rasusa | read subsampling | 0.3.0 | [github.com/mbhall88/rasusa](github.com/mbhall88/rasusa) | [doi.org/10.5281/zenodo.3731394](doi.org/10.5281/zenodo.3731394) |
+| samtools | sequencing data manipulation | 1.11 | [github.com/samtools/samtools](github.com/samtools/samtools) | [doi.org/10.1093/bioinformatics/btp352](doi.org/10.1093/bioinformatics/btp352) |
+| bcftools | genomic variant discovery (from reads) | 1.11-21-g0987715 | [github.com/samtools/bcftools](github.com/samtools/bcftools) | [dx.doi.org/10.1093%2Fbioinformatics%2Fbtr509](dx.doi.org/10.1093%2Fbioinformatics%2Fbtr509) |
+| DNAdiff | genomic variant discovery (from genome alignment) | 1.3 | [dargithub.com/marbl/MUMmer3](github.com/marbl/MUMmer3) | [doi.org/10.1186/gb-2004-5-2-r12](doi.org/10.1186/gb-2004-5-2-r12) |
+| mauve | genomic variant discovery (from genome alignment) | 2.4.0 | [darlinglab.org/mauve/mauve.html](darlinglab.org/mauve/mauve.html) | [doi.org/10.1371/journal.pone.0011147](doi.org/10.1371/journal.pone.0011147) |
+| bwa | mapping/alignment | 0.7.17-r1188 | [github.com/lh3/bwa](github.com/lh3/bwa) | [arxiv.org/abs/1303.3997](arxiv.org/abs/1303.3997) |
+| minimap2 | mapping/alignment | 2.17-r974-dirty | [github.com/lh3/minimap2](github.com/lh3/minimap2) | [doi.org/10.1093/bioinformatics/bty191](doi.org/10.1093/bioinformatics/bty191) |
+
+
 ### Download of reference genomes and annotations
 ### Download of public read data sets
 ### Quality control of the read data sets
 ### Downsampling of the read sets
 ### Conducting the de novo assemblies
 ### Evaluating the de novo assemblies
-### Discovery of single nucleotide variations
+### Discovery of single nucleotide variations 
