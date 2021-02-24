@@ -48,6 +48,12 @@ In the following a tabular overview of all software requirements to reproduce th
 
 
 ### Download of reference genomes and annotations
+By running `S1_referenceDownload.sh` the reference genomes and gene annotations of these are downloaded and stored in the `./data/references/` directory as `.fasta` and `.gff3` files, named after the reference set identifiers. The three references include:
+- _Escherichia coli_ strain CFT073, named as CFT073
+- _Klebsiella pneumoniae_ strain MGH78578, named as MGH78578 (includes five plasmids)
+- _Staphylococcus aureus_ strain RN4220, named as RN4220 (fragmented genome of 118 contigs)
+The script basically calls `wget` on URLs referring to the NCBI sequence viewer with the database specified as nuccore, the report specified as fasta or gff3 and the id specified as the NC and NZ identifiers of the respective references. More information on the identifiers and their publishers can be obtained from the projects report. If a reference genome consists of more than one file (i.e. due to plasmids or multiple contigs), all the respective files are first stored in a `./temp` directory and then combined into one file using the `cat` command. Finally `sed -i '/^$/d'` is called on each file to remove empty lines.
+
 ### Download of public read data sets
 ### Quality control of the read data sets
 ### Downsampling of the read sets
