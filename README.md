@@ -23,7 +23,7 @@ This repository grants access to the projects report, supplementary data, the mo
 Most of the results for this project were obtained by running `bash` scripts and `Jupyter`/`python` notebooks which are supplied in this repository. Some steps were conducted manually and for these the explicit commands will be given below. Not all but the most important results are stored within this repository and can be accessed without re-running the scripts. The structure of the directories reflects the one which is created by running all scripts and should therefore not be changed in order to prevent errors during the execution of the provided scripts. As a naming convention, the prefix _S1_ to _S7_ is used for the main scripts which also give the order in which the scripts are supposed to be run. The _T1_ and _T2_ scripts are helper scripts used during the manual application of Trycycler and a _R_ prefix is used for `Jupyter` notebooks used for pre-processing the generated results file in the respective stages.
 
 ### Dependencies and software used
-In the following a tabular overview of all software requirements to reproduce the results of this project are given. As some of the tools were accessible via the systems path variables on which the scripts were run but others were installed locally in a _./tools/_ directory, variables are defined in each script to access the executables of each tool; if necessary these variables can easily be changed in the respective scripts.
+In the following a tabular overview of all software requirements to reproduce the results of this project are given. As some of the tools were accessible via the systems path variables of the system on which the scripts were run, but others were installed locally in a _./tools/_ directory, variables are defined in each script to access the executables of the tools; if necessary these variables can easily be changed in the respective scripts.
 
 | Name | Type | Version | Access | Publication |
 |-|-|-|-|-|
@@ -52,6 +52,7 @@ By running `S1_referenceDownload.sh` the reference genomes and gene annotations 
 - _Escherichia coli_ strain CFT073, named as CFT073
 - _Klebsiella pneumoniae_ strain MGH78578, named as MGH78578 (includes five plasmids)
 - _Staphylococcus aureus_ strain RN4220, named as RN4220 (fragmented genome of 118 contigs)
+
 The script basically calls `wget` on URLs referring to the NCBI sequence viewer with the database specified as nuccore, the report specified as fasta or gff3 and the id specified as the NC and NZ identifiers of the respective references. More information on the identifiers and their publishers can be obtained from the projects report. If a reference genome consists of more than one file (i.e. due to plasmids or multiple contigs), all the respective files are first stored in a `./temp` directory and then combined into one file using the `cat` command. Finally `sed -i '/^$/d'` is called on each file to remove empty lines.
 
 ### Download of public read data sets
