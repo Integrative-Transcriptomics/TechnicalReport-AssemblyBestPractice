@@ -56,6 +56,17 @@ By running `S1_referenceDownload.sh` the reference genomes and gene annotations 
 The script basically calls `wget` on URLs referring to the NCBI sequence viewer with the database specified as nuccore, the report specified as fasta or gff3 and the id specified as the NC and NZ identifiers of the respective references. More information on the identifiers and their publishers can be obtained from the projects report. If a reference genome consists of more than one file (i.e. due to plasmids or multiple contigs), all the respective files are first stored in a `./temp` directory and then combined into one file using the `cat` command. Finally `sed -i '/^$/d'` is called on each file to remove empty lines.
 
 ### Download of public read data sets
+By running `S2_readDownload.sh` the publicy available read sets of the CFT073 and MGH78578 reference sets are downloaded into the `./data/reads/CFT073` and `./data/reads/MGH78578` directory, respectively. The script calls `fastq-dump` on the respective SRR identifiers of the read sets. The exact identifiers and origin of the reads are described in the project report. For the short reads the additional parameter `--split-files` was set as these are paired-end reads and in order to obtain two separate files (containing the forward- and reverses-trand reads). After executing the following files will be accessible
+- SRR8494940.fastq (CFT073 long reads)
+- SRR8482585_1.fastq and SRR8482585_2.fastq (CFT073 short reads)
+- SRR8494915.fastq (MGH78578 long reads)
+- SRR8482567_1.fastq and SRR8482567_2.fastq (MGH78578 short reads)
+
+The read sets of the RN4220 reference are not publicy available and are located on a server of the Universität Tübingen. The respective files were manually copied and stored as follows in the project directory
+- QNFLR056AF_1.fastq and QNFLR056AF_2.fastq (RN4220 short reads)
+- QNFLR049AW~guppy3210.fastq (RN4220 long reads, basecalled with Guppy 3.2.1.0)
+- QNFLR049AW~guppy4011.fastq (RN4220 long reads, basecalled with Guppy 4.0.1.1)
+
 ### Quality control of the read data sets
 ### Downsampling of the read sets
 ### Conducting the de novo assemblies
