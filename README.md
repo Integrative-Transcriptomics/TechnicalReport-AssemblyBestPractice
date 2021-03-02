@@ -128,6 +128,22 @@ To summarize the per read sequence qualities from the FastQC reports and to anal
 
 The summary file is stored as _./supplementary_files/F3_readStatistics.csv_ and the coverage profile can be accessed from the notebook without re-running the full project. Jupyter Notebook is freely available [here](https://jupyter.org/).
 
-### Conducting the de novo assemblies 
+### Running the de novo assemblies
+The next step comprised running the de novo assemblies on the different read sets. To simplify this process the script `S6_runAssembly.sh` was written. The script requiers the definition of three parameters:
+- 1. the assembler to use, one of unicycler~hybrid, haslr, unicycler~longread, flye, canu or raven
+- 2. the reference set (i.e. the reads) to use, one of CFT073, MGH78578, RN4220~guppy3210 or RN4220~guppy4011
+- 3. (optional) a sub sample coverage, one of 200X, 150X, 100X, 80X, 60X, 40X, 20X, 15X, 10X, 8X, 6X, 4X, 2X or 1X
+
+The script will then run the assembler on the defined reference set and (optional) on an sub sample of the long reads. Note that if MGH78578 and a sub sample coverage is defined, no assembly will be conducted as no sub samples of the MGH78578 reference set were generated. If applicable, the default parameters of the assemblers were used.
+- For Flye and the RN4220 reads basecalled with Guppy 4.0.1.1 the parameter `--asm-coverage 50` had to be set in order to the disjointig assembly step being completed. The parameter will reduce the reads used for this initial step to a coverage of 50X.
+- For Canu the parameters `-minInputCoverage=0 -stopOnLowCoverage=0` were set in order to prevent the abortion of the assembly process for low coverage sub samples.
+- HASLR, Flye and Canu require the specification of an approximate genome length. For these assemblers the values `5.2m`, `5.3m` and `2.8m` are used for the CFT073, MGH78578 and RN4220 reference sets, respectively.
+- Raven does not produce any log files but print its output to `stdout`. For this reason only the final assemblies of Raven are stored.
+
+The log files of each assembler will be stored at _./results/assembly-out/<SAMPLE-ID>/<ASSEMBLER-ID>-<OPTIONAL-COVERAGE>/_ were <ASSEMBLER-ID>, <SAMPLE-ID> and <OPTIONAL-COVERAGE> are the first, second and third input parameters, respectively. If no third parameter is given the directory name <ASSEMBER-ID> alone is chosen. The final assembly (in fasta format) will be copied to _./results/assemblies/<SAMPLE-ID>~<OPTIONAL-COVERAGE>-<ASSEMBLER-ID>.fasta_
+
+### Running Trycycler
+
+
 ### Evaluating the de novo assemblies
 ### Discovery of single nucleotide variations 
