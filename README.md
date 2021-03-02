@@ -94,7 +94,7 @@ By running `S1_referenceDownload.sh` the reference genomes and gene annotations 
 - _Klebsiella pneumoniae_ strain MGH78578, named as MGH78578 (includes five plasmids)
 - _Staphylococcus aureus_ strain RN4220, named as RN4220 (fragmented genome of 118 contigs)
 
-The script basically calls `wget` on URLs referring to the NCBI sequence viewer with the database specified as nuccore, the report specified as fasta or gff3 and the id specified as the NC and NZ identifiers of the respective references. More information on the identifiers and their publishers can be obtained from the project report. If a reference genome consists of more than one file (i.e. due to plasmids or multiple contigs), all the respective files are first stored in a _./temp_ directory and then combined into one file using the `cat` command. Finally `sed -i '/^$/d'` is called on each file to remove empty lines.
+The tag <SAMPLE-ID> will be used in the following to refer to one of CFT073, MGH78578 or RN4220. The script basically calls `wget` on URLs referring to the NCBI sequence viewer with the database specified as nuccore, the report specified as fasta or gff3 and the id specified as the NC and NZ identifiers of the respective references. More information on the identifiers and their publishers can be obtained from the project report. If a reference genome consists of more than one file (i.e. due to plasmids or multiple contigs), all the respective files are first stored in a _./temp_ directory and then combined into one file using the `cat` command. Finally `sed -i '/^$/d'` is called on each file to remove empty lines.
 
 ### Download of public read data sets
 By running `S2_readDownload.sh` the publicy available read sets of the CFT073 and MGH78578 reference sets are downloaded into the _./data/reads/CFT073_ and _./data/reads/MGH78578_ directory, respectively. The script calls `fastq-dump` on the respective SRR identifiers of the read sets. The exact identifiers and origin of the reads are described in the project report. For the short reads the additional parameter `--split-files` was set, as these are paired-end reads, in order to obtain two separate files (containing the forward- and reverse-strand reads). After executing the following files will be accessible
@@ -109,6 +109,13 @@ The read sets of the RN4220 reference are not publicy available and are located 
 - QNFLR049AW~guppy4011.fastq (RN4220 long reads, basecalled with Guppy 4.0.1.1)
 
 ### Quality control of the read sets
+A quality control step of all downloaded red sets can be executed by running `S3_readQualityControl.sh`. Therewith, the following three steps are executed:
+- All long read sets are processed with Porechop for adapter removal. The trimmed long read _.fastq_ files were named with a _-t_ suffix in their filenames and stored in the same directory as the untrimmed reads. The Porechop reports are stored in the _./results/porechop/<SAMPLE-ID>/Porechop-<READ-FILENAME>.log_ directories.
+- To control the quality of the input reads before conducting the assemblies, FastQC was run on all read sets to assess overrepresenteted sequences and the per base quality scores. One _.html_ and one _.zip_ file is generated for each long read and both short read files as _./results/fastqc/<SAMPLE-ID>/<READ-FILENAME>_fastqc(.zip or .html)_
+- Lastly, to check for the depth and breadth of coverage across the reference genome the reads were first mapped to the respective genomes using `minimap2` (specifying the `-x map-ont` and `-x sr` parameter for long and short read mapping, respectively, and the `-a` parameter in order to produce output in SAM format). Next, the SAM files were sorted and converted to BAM files using `samtools sort` with the `-O bam` parameter set. The `samtools depth` command was run on all these BAM files, which basically outputs the per position depth of coverage, with the `-a` parameters set to include positions with zero coverage into the report. The resulting files are stored as _./results/coverage/<SAMPLE-ID>/<READ-FILENAME>.cov (note that one common file for the short reads named with a \_1\_2 suffix is created).
+
+The Porechop reports can be accessed in _./supplementary_files/F1_porechop.zip_ and the FastQC html reports in _./supplementary_files/F2_fastqc.zip_.
+
 ### Downsampling of the read sets
 ### Conducting the de novo assemblies 
 ### Evaluating the de novo assemblies
