@@ -130,9 +130,9 @@ The summary file is stored as _./supplementary_files/F3_readStatistics.csv_ and 
 
 ### Running the de novo assemblies
 The next step comprised running the de novo assemblies on the different read sets. To simplify this process the script `S6_runAssembly.sh` was written. The script requiers the definition of three parameters:
-- 1. the assembler to use, one of unicycler~hybrid, haslr, unicycler~longread, flye, canu or raven
-- 2. the reference set (i.e. the reads) to use, one of CFT073, MGH78578, RN4220~guppy3210 or RN4220~guppy4011
-- 3. (optional) a sub sample coverage, one of 200X, 150X, 100X, 80X, 60X, 40X, 20X, 15X, 10X, 8X, 6X, 4X, 2X or 1X
+1. the assembler to use, one of unicycler~hybrid, haslr, unicycler~longread, flye, canu or raven
+2. the reference set (i.e. the reads) to use, one of CFT073, MGH78578, RN4220~guppy3210 or RN4220~guppy4011
+3. (optional) a sub sample coverage, one of 200X, 150X, 100X, 80X, 60X, 40X, 20X, 15X, 10X, 8X, 6X, 4X, 2X or 1X
 
 The script will then run the assembler on the defined reference set and (optional) on an sub sample of the long reads. Note that if MGH78578 and a sub sample coverage is defined, no assembly will be conducted as no sub samples of the MGH78578 reference set were generated. If applicable, the default parameters of the assemblers were used.
 - For Flye and the RN4220 reads basecalled with Guppy 4.0.1.1 the parameter `--asm-coverage 50` had to be set in order to the disjointig assembly step being completed. The parameter will reduce the reads used for this initial step to a coverage of 50X.
@@ -140,10 +140,31 @@ The script will then run the assembler on the defined reference set and (optiona
 - HASLR, Flye and Canu require the specification of an approximate genome length. For these assemblers the values `5.2m`, `5.3m` and `2.8m` are used for the CFT073, MGH78578 and RN4220 reference sets, respectively.
 - Raven does not produce any log files but print its output to `stdout`. For this reason only the final assemblies of Raven are stored.
 
-The log files of each assembler will be stored at _./results/assembly-out/<SAMPLE-ID>/<ASSEMBLER-ID>-<OPTIONAL-COVERAGE>/_ were <ASSEMBLER-ID>, <SAMPLE-ID> and <OPTIONAL-COVERAGE> are the first, second and third input parameters, respectively. If no third parameter is given the directory name <ASSEMBER-ID> alone is chosen. The final assembly (in fasta format) will be copied to _./results/assemblies/<SAMPLE-ID>~<OPTIONAL-COVERAGE>-<ASSEMBLER-ID>.fasta_
+The log files of each assembler will be stored at _./results/assembly-out/<SAMPLE-ID>/<ASSEMBLER-ID>-<OPTIONAL-COVERAGE>/_ were <ASSEMBLER-ID>, <SAMPLE-ID> and <OPTIONAL-COVERAGE> are the first, second and third input parameters, respectively. If no third parameter is given the directory name <ASSEMBER-ID> alone is chosen. The final assembly (in fasta format) will be copied to _./results/assemblies/<SAMPLE-ID>~<OPTIONAL-COVERAGE>-<ASSEMBLER-ID>.fasta_. For Canu an outmated polishing step with Medaka is conducted and the resulting polished assembly is stored with the additional suffix _\_medaka_ in its filename.
+
+The script was run for all available assemblers for the non-sub sample reference sets, all available assemblers for the CFT073 sub samples and Unicycler in hybrid mode for the RN4220 sub samples. After execution the resulting fasta files were checked and empty fasta files were deleted.
 
 ### Running Trycycler
+Trycycler is a tool to compute consensus sequences from (long read) assemblies and is executed in six steps which are illustrated (here)[https://github.com/rrwick/Trycycler/wiki/Illustrated-pipeline-overview] and described in text form in more detail (here)[https://github.com/rrwick/Trycycler/wiki/How-to-run-Trycycler]. For this project Trycycler was executed manually due to the fact that the results of each step have to be checked manually before executing the next step. The output directories were chosen in the same manner as for the other assemblies with the assembler ID _"trycycler"_. Trycycler was run on all available long read assemblies (i.e. from Unicycler, Raven, Flye and Canu) of the non sub-sample reference sets and the sub-sample assemblies of the CFT073 reference reads. Thereby, the following adjustments were made:
+- CFT073:
+    - The Canu assembly polished with Medaka could not be circularized during the `reconcile` step. Thus, the unpolished Canu assembly was used.
+    - A contig of the Canu assembly in cluster one required additional trimming for circularization during the `reconcile` step. For this reason the parameter `--max_trim_seq 100000` was set for the `reconcile` step.
+    - The contigs of  the Canu and Raven assemblies in cluster one showed indels of about 800 base pairs length. The parameter `--max_index_size 800` was set for the `reconcile` step to resolve this issue.
+- CFT073 sub samples:
+    - The Canu assembly showed circularization issues for the CFT073 sub samples and was removed before the `reconcile` step.
+    - For low coverage sub samples indel errors emerged which prevented circularization. To resolve this issue the parameter `--max_index_size 800` was set for the `reconcile` step.
+    - The Raven assembly showed circularization issues for the CFT073 sub sample with 20X coverage and was removed before the `reconcile` step.
+- MGH78578:
+    - The Canu assembly polished with Medaka could not be circularized during the `reconcile` step. Thus, the unpolished Canu assembly was used.
+    - The third cluster generated by the `cluster` step comprised only one short (82,712 base pairs) contig from the Unicycler assembly and was deleted.
+    - The second cluster generated by the `cluster` step comprised one contig of the Canu assembly that was much longer than the other contigs in the cluster (256,899 base pairs versus approx. 186,000 base pairs of the other contigs). The contig was therefore deleted.
+    - A contig of the Canu assembly in cluster one required the trimming of 76,343 base pairs for circularization during the `reconcile` step. For this reason the parameter `--max_trim_seq 100000` was set for the `reconcile` step.
+- RN4220 (Guppy version 4.0.1.1):
+    - A contig of the Canu assembly in cluster one required the trimming of 69,107 base pairs for circularization during the `reconcile` step. For this reason the parameter `--max_trim_seq 70000` was set for the `reconcile` step.
+- RN4220 (Guppy version 3.2.1.0):
+    - The Canu assembly could not be circularized during the `reconcile` step and was removed.
 
+After running the `consensus` step the final consensus assemblies were copied to _./results/assemblies/<SAMPLE-ID>~<OPTIONAL-COVERAGE>-trycycler.fasta_. These were further processed by polishing with Medaka and polishing with Pilon. The resulting polished assemblies were copied to _./results/assemblies/<SAMPLE-ID>~<OPTIONAL-COVERAGE>-trycycler_medaka.fasta_ and _./results/assemblies/<SAMPLE-ID>~<OPTIONAL-COVERAGE>-trycycler_medaka_pilon.fasta_. Both polishing tools can be used with the `T1_runMedaka.sh` and `T2_runPilon.sh` scripts.
 
 ### Evaluating the de novo assemblies
 ### Discovery of single nucleotide variations 
