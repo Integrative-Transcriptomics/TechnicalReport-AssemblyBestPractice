@@ -1,26 +1,68 @@
 # Researchproject:
 ### Elaboration of a best practice for hybrid and long read de novo assembly of bacterial genomes utilizing Illumina and Oxford Nanopore Technologies reads
 ***
-***
 # Project description
-The advent of third generation long read sequencing technologies, i.e. Oxford Nanopore Technologies (ONT) -ION devices, greatly expanded the possibilities for de novo assembly in terms of the contiguity of the reconstructed genomes. However, current long read technologies suffer from a not insignificant error rate compared to second generation short read sequencing technologies. Mainly due to new developments in base calling algorithms (the translation of signals from the sequencing device into DNA sequences) and further development of the protein pores used in ONT devices, this error rate is constantly decreasing. In addition, many new algorithmic approaches have been developed over the last years to efficiently use these long reads alone or in combination with short reads, i.e. in a hybrid approach, for de novo assembly or error correction of long reads.
+The advent of third generation long read sequencing technologies, i.e. Oxford Nanopore Technologies (ONT) devices, greatly expanded the possibilities for de novo assembly in terms of the contiguity of the reconstructed genomes. However, current long read technologies suffer from a not insignificant error rate compared to second generation short read sequencing technologies. Mainly due to new developments in base calling algorithms (the translation of signals from the sequencing device into DNA sequences) and further development of the protein pores used in ONT devices, this error rate is constantly decreasing. Over the last years many new algorithmic approaches have been developed to efficiently use these long reads alone or in combination with short reads, i.e. in a hybrid approach, for de novo assembly or error correction of long reads.
 
-In the course of the project _Elaboration of a best practice for hybrid and long read de novo assembly of bacterial genomes utilizing Illumina and Oxford Nanopore Technologies reads_ we asked to what extent a quality difference between long read only and hybrid approaches for de novo assembly is noticeable. To answer this, a selection of promising assemblers was chosen based on current benchmark reviews, a de novo assembly was performed with these and the resulting assemblies were subsequently evaluated according to common criteria.
+In the course of the project _Elaboration of a best practice for hybrid and long read de novo assembly of bacterial genomes utilizing Illumina and Oxford Nanopore Technologies reads_ we asked to what extent a quality difference between long read only and hybrid approaches for de novo assembly is noticeable. To answer this, a selection of promising assemblers was chosen based on recently published reviews, a de novo assembly was performed with these and the resulting assemblies were subsequently evaluated according to commonly used criteria.
 
-Another aspect is the cost efficiency of using long reads. Increased read coverage can theoretically correct errors in the long reads, but this also increases the sequencing cost. We have investigated how different depths of coverage of the long reads affect the quality of the computed assemblies.
+Another aspect is the cost efficiency of using long reads. Increased read coverage can theoretically correct errors in the long reads, but this comes with an increase of the sequencing cost. We have investigated how different depths of coverage of the long reads affect the quality of the computed assemblies.
 
-To also include the feasibility of the created de novo assemblies being used for downstream applications we studied the discovery of base substitutions by using the most qualitative de novo assemblies relative to the reference genomes and compared this to the discovery of such substitutions by using the input reads alone.
+Moreover, the applicability of long reads for single nucleotide variation discovery, relative to one reference genome, was studied by using either high qualitative de novo assemblies or the read sets alone.
 
-Our findings were summarized in a best practice recommendation.
-
-This repository grants access to the projects report, supplementary data, the most important result files but especially an extended description of the methods conducted to enable the reproduction of the results.
+This repository grants access to the projects report and supplementary data. An extended description of the conducted methods is given and scripts are provided with which the obtained results can be reproduced.
 ***
 # Best practice recommendation
+Our findings were summarized in a best practice recommendation.
 ***
-***
-# Extended description of methods
-### General note on the structure of this repository
-Most of the results for this project were obtained by running `bash` scripts and `Jupyter`/`python` notebooks which are supplied in this repository. Some steps were conducted manually and for these the explicit commands will be given below. Not all but the most important results are stored within this repository and can be accessed without re-running the scripts. The structure of the directories reflects the one which is created by running all scripts and should therefore not be changed in order to prevent errors during the execution of the provided scripts. As a naming convention, the prefix _S1_ to _S7_ is used for the main scripts which also give the order in which the scripts are supposed to be run. The _T1_ and _T2_ scripts are helper scripts used during the manual application of Trycycler and a _R_ prefix is used for `Jupyter` notebooks used for pre-processing the generated results file in the respective stages.
+# Extended description of methods and material
+### Note on the structure of this repository
+Most of the results for this project were obtained by running **Shell** scripts and **Jupyter** (**Python 3**) notebooks. Each of these scripts is provided herein and is named with the prefix _Sx\__ were _x_ is a number indicating the order in which the scripts are ment to be executed (the scripts starting with _Tx\__ were used to ease some manual command calls). Each script comprises a comprehensive documentation on its own and therefore only a top-level description on how and what for the scripts are used is given. In addition manual console commands and tools were run which will be explained in greater detail.
+
+For members of the _Integrated Transcriptomics_ research group a fully executed version of this repository comprising all result files is available at the server _romanov_. 
+
+The most important results, i.e. those which can be shared on github due to their size, are provided in the _./supplementary_files_ directory and were generated mostly manually. By cloning this repository and executing all of the steps described below the directories _./data_ and _./results_ will be generated, featuring the following file catalog:
+```
+├───data
+│   ├───reads 
+│   │   └───<SAMPLE-ID>
+│   │        // one dir. for each reference set:
+│   │        // contains short reads and raw, trimmed
+│   │        // and sub sampled long reads.
+│   └───references
+│        // contains reference genomes (fasta) and
+│        // annotations (gff3).
+└───results
+    ├───assemblies
+    │    // contains the final fasta output of each assembler run.
+    ├───assembly-out
+    │   └───<SAMPLE-ID> 
+    │        // one dir. for each reference set (for RN4220
+    │        // the basecaller version is appended): stores
+    │        // all output files of each assembler run.
+    ├───coverage
+    │   └───<SAMPLE-ID>
+    │        // one dir. for each reference set: contains files (cov)
+    │        // storing coverage information for each read set.
+    ├───fastqc
+    │   └───<SAMPLE-ID>
+    │        // one dir. for each reference set: contains reports
+    │        // of quality control for each read set (zip and html).
+    ├───porechop
+    │   └───<SAMPLE-ID>
+    │        // one dir. for each reference set: contains files (txt)
+    │        // storing information about long read trimming
+    ├───quast
+    │    // one dir. for each pair of reference set and sub sample
+    │    // coverage, contain information about assembly evaluation
+    └───SNVdiscovery
+        └───CFT073
+            ├───bcftools
+            ├───dnadiff
+            └───mauve
+                 // each dir. stores output regarding SNV discovery
+                 // with the respective tool
+```
 
 ### Dependencies and software used
 In the following a tabular overview of all software requirements to reproduce the results of this project are given. As some of the tools were accessible via the systems path variables of the system on which the scripts were run, but others were installed locally in a _./tools/_ directory, variables are defined in each script to access the executables of the tools; if necessary these variables can easily be changed in the respective scripts.
@@ -46,29 +88,28 @@ In the following a tabular overview of all software requirements to reproduce th
 | bwa | mapping/alignment | 0.7.17-r1188 | [github.com/lh3/bwa](github.com/lh3/bwa) | [arxiv.org/abs/1303.3997](arxiv.org/abs/1303.3997) |
 | minimap2 | mapping/alignment | 2.17-r974-dirty | [github.com/lh3/minimap2](github.com/lh3/minimap2) | [doi.org/10.1093/bioinformatics/bty191](doi.org/10.1093/bioinformatics/bty191) |
 
-
 ### Download of reference genomes and annotations
-By running `S1_referenceDownload.sh` the reference genomes and gene annotations of these are downloaded and stored in the `./data/references/` directory as `.fasta` and `.gff3` files, named after the reference set identifiers. The three references include:
+By running `S1_referenceDownload.sh` the reference genomes and gene annotations of these are downloaded and stored in the _`_./data/references/_`_ directory as _.fasta_ and _.gff3_ files, named after the reference set identifiers. The three references include:
 - _Escherichia coli_ strain CFT073, named as CFT073
 - _Klebsiella pneumoniae_ strain MGH78578, named as MGH78578 (includes five plasmids)
 - _Staphylococcus aureus_ strain RN4220, named as RN4220 (fragmented genome of 118 contigs)
 
-The script basically calls `wget` on URLs referring to the NCBI sequence viewer with the database specified as nuccore, the report specified as fasta or gff3 and the id specified as the NC and NZ identifiers of the respective references. More information on the identifiers and their publishers can be obtained from the projects report. If a reference genome consists of more than one file (i.e. due to plasmids or multiple contigs), all the respective files are first stored in a `./temp` directory and then combined into one file using the `cat` command. Finally `sed -i '/^$/d'` is called on each file to remove empty lines.
+The script basically calls `wget` on URLs referring to the NCBI sequence viewer with the database specified as nuccore, the report specified as fasta or gff3 and the id specified as the NC and NZ identifiers of the respective references. More information on the identifiers and their publishers can be obtained from the project report. If a reference genome consists of more than one file (i.e. due to plasmids or multiple contigs), all the respective files are first stored in a _./temp_ directory and then combined into one file using the `cat` command. Finally `sed -i '/^$/d'` is called on each file to remove empty lines.
 
 ### Download of public read data sets
-By running `S2_readDownload.sh` the publicy available read sets of the CFT073 and MGH78578 reference sets are downloaded into the `./data/reads/CFT073` and `./data/reads/MGH78578` directory, respectively. The script calls `fastq-dump` on the respective SRR identifiers of the read sets. The exact identifiers and origin of the reads are described in the project report. For the short reads the additional parameter `--split-files` was set as these are paired-end reads and in order to obtain two separate files (containing the forward- and reverses-trand reads). After executing the following files will be accessible
+By running `S2_readDownload.sh` the publicy available read sets of the CFT073 and MGH78578 reference sets are downloaded into the _./data/reads/CFT073_ and _./data/reads/MGH78578_ directory, respectively. The script calls `fastq-dump` on the respective SRR identifiers of the read sets. The exact identifiers and origin of the reads are described in the project report. For the short reads the additional parameter `--split-files` was set, as these are paired-end reads, in order to obtain two separate files (containing the forward- and reverse-strand reads). After executing the following files will be accessible
 - SRR8494940.fastq (CFT073 long reads)
 - SRR8482585_1.fastq and SRR8482585_2.fastq (CFT073 short reads)
 - SRR8494915.fastq (MGH78578 long reads)
 - SRR8482567_1.fastq and SRR8482567_2.fastq (MGH78578 short reads)
 
-The read sets of the RN4220 reference are not publicy available and are located on a server of the Universität Tübingen. The respective files were manually copied and stored as follows in the project directory
+The read sets of the RN4220 reference are not publicy available and are located on a server of the Universität Tübingen. The respective files were manually copied and stored as follows in the project directory _./data/reads/RN4220_
 - QNFLR056AF_1.fastq and QNFLR056AF_2.fastq (RN4220 short reads)
 - QNFLR049AW~guppy3210.fastq (RN4220 long reads, basecalled with Guppy 3.2.1.0)
 - QNFLR049AW~guppy4011.fastq (RN4220 long reads, basecalled with Guppy 4.0.1.1)
 
-### Quality control of the read data sets
+### Quality control of the read sets
 ### Downsampling of the read sets
-### Conducting the de novo assemblies
+### Conducting the de novo assemblies 
 ### Evaluating the de novo assemblies
 ### Discovery of single nucleotide variations 
