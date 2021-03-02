@@ -116,7 +116,14 @@ A quality control step of all downloaded red sets can be executed by running `S3
 
 The Porechop reports can be accessed in _./supplementary_files/F1_porechop.zip_ and the FastQC html reports in _./supplementary_files/F2_fastqc.zip_.
 
-### Downsampling of the read sets
+### Sub-sampling of the read sets
+To assess the effect of decreasing long read coverage depth on the assembly quality the tool Rasusa was used to generate sub samples with expected coverages of 200X, 150X, 100X, 80X, 60X, 40X, 20X, 15X, 10X, 8X, 6X, 4X, 2X and 1X of the CFT073 and RN4220 long reads. To automate this process the script `S4_readSubsampling.sh` can be executed. The script will conduct the following steps:
+- Run Rasusa on the respective long read files with the pre-defined coverage and an estimated genome length. For the genome length of CFT073 the length of the reference genome was rounded of to 5.2 million. For the RN4220 reference genome it was decided to use 2.8 million, the median length of 12,401 genome assemblies of S. aureus  (source: [www.ncbi.nlm.nih.gov](https://www.ncbi.nlm.nih.gov/genome/?term=Staphylococcus%20aureus[Organism]&cmd=DetailsSearch)), as the genomes length due to its fragmentation. Each sub sample will be stored as _./data/reads/<SAMPLE-ID>/<READ-FILENAME>-<EXPECTED-COVERAGE>.fastq_.
+- In addition the third step of the section before is executed.
+
+### Analysing the read set coverage and quality
+
+
 ### Conducting the de novo assemblies 
 ### Evaluating the de novo assemblies
 ### Discovery of single nucleotide variations 
