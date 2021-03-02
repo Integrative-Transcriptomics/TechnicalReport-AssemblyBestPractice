@@ -122,7 +122,11 @@ To assess the effect of decreasing long read coverage depth on the assembly qual
 - In addition the third step of the section before is executed.
 
 ### Analysing the read set coverage and quality
+To summarize the per read sequence qualities from the FastQC reports and to analyze the .cov files the Python script `S5_coverageAnalysis.ipynb` is used. The notebook was written with Python version 3.9.1 and documents each of the conducted steps, which basically comprise the following:
+- The mean per read Phred quality score from the FastQC report, the mean depth of coverage and percentage of genomic positions with zero coverage as well as the expected percentage of genomic positions with at least coverage depth one according to the Lander-Waterman model are collected and written to a summary file (mean per read quality is only reported for non sub-samples).
+- Each .cov file is used to generate a coverage profile: These coverage profiles split all genomic positions into a set of chunks of fixed length. For each chunk the minimal, maximal and mean depth of coverage is plotted and it is indicated if any position of a chunk had a coverage of zero. The profiles allow to locate and count regions of low or zero coverage as these will likely lead to incomplete assemblies (which are not caused by assemblers but the input data itself).
 
+The summary file is stored as _./supplementary_files/F3_readStatistics.csv_ and the coverage profile can be accessed from the notebook without re-running the full project. Jupyter Notebook is freely available [here](https://jupyter.org/).
 
 ### Conducting the de novo assemblies 
 ### Evaluating the de novo assemblies
