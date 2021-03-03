@@ -178,8 +178,14 @@ Quast allows to alter the features that are written to the _.txt_ _.tex_ and _.t
 The output directory is choosen as _./results/quast/\<SAMPLE-ID\>~\<OPTIONAL-COVERAGE\>. As before the coverage suffix starting with ~ is not set, if no sub sample coverage was specified. The Quast results were manually copied into the file _./supplementary_files/F4_quastReports.xlsx_. Further analysis of the Quast reports were conducted in the Notebooks `S8_genePredictionAnalysis.ipynb` and `S9_subsampleAssemblyVisualization`.
 
 ### Discovery of single nucleotide variations
+It was investigated how hybrid and long read only approaches can be used for the discovery of single nucleotide variations. Thereby it was decided to only investigate this for the CFT073 reference set. First, either the short- and long read sets alone or both in combination were used as input for bcftools. bcftools requires the reads to be mappped to a reference genome first. This was conducted again by using minimap2 for mapping and samtools for sorting and conversion into BAM format with the same parameters as described before. These BAM files are used as input for the `bcftools mpielup` and `bcftools call` commands. For the `mpileup` command the parameter `--skip-indels` was set to ignore insertions and deletions and for the `call` command the parameters `--ploidy 1 -m -v` were set to account for a haploid reference genome, use an updated variant caller algorithm and output only variant sites respectively. These steps can be executed automatically with the script `S10_SNVdiscovery.sh`. The resulting _.vcf_ files are stored at _./results/SNVdiscovery/CFT073/bcftools/_.
 
-
+Second, the hybrid Unicycler and long read consensus Trycycler (polished with Medaka) assemblies were used as input for DNAdiff and Mauve. For DNAdiff the following commands were run
+```
+dnadiff -p trycycler_medaka-dnadiff ./data/references/CFT073.fasta ./results/assemblies/CFT073-trycycler_medaka.fasta
+dnadiff -p unicycler~hybrid-dnadiff ./data/references/CFT073.fasta ./results/assemblies/CFT073-unicycler~hybrid.fasta
+```
+and the results were stored at the _./results/SNVdiscovery/CFT073/DNAdiff/_ directory. Mauve was run as GUI program: The two assemblies were aligned with the CFT073 reference genome using progressiveMauve and the SNVs were exported via the Tools \> Export \> Export SNPs menu option and stored at the _./results/SNVdiscovery/CFT073/mauve/_ directory. The results are compared and analyzed in the notebook `S11_SNVDiscoveryAnalysis.ipynb`.
 
 ***
 
