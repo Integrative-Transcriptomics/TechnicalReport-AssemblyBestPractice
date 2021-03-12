@@ -1,4 +1,5 @@
 /.ipynb_checkpoints
+/scripts/**
 /results/**
 /data/**
-/supplementary_files/images/*
+/results.zip
