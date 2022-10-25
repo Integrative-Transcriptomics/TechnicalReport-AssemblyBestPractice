@@ -1,10 +1,9 @@
-# Researchproject:
-### Elaboration of a best practice for hybrid and long read de novo assembly of bacterial genomes utilizing Illumina and Oxford Nanopore Technologies reads
+# About:
+### Technical report on best practices for hybrid and long read de novo assembly of bacterial genomes utilizing Illumina and Oxford Nanopore Technologies reads
 ***
-# Project description
 The advent of third generation long read sequencing technologies, i.e. Oxford Nanopore Technologies (ONT) devices, greatly expanded the possibilities for de novo assembly in terms of the contiguity of the reconstructed genomes. However, current long read technologies suffer from a not insignificant error rate compared to second generation short read sequencing technologies. Mainly due to new developments in base calling algorithms (the translation of signals from the sequencing device into DNA read sequences) and advancements of the protein pores used in ONT devices, this error rate is constantly decreasing. Over the last years many new algorithmic approaches have been developed to efficiently use these long reads alone or in combination with short reads, i.e. in a hybrid approach, for de novo assembly or error correction of long reads.
 
-In the course of the project _Elaboration of a best practice for hybrid and long read de novo assembly of bacterial genomes utilizing Illumina and Oxford Nanopore Technologies reads_ we asked to what extent a quality difference between long read only and hybrid approaches for de novo assembly is noticeable. To answer this, a selection of promising assemblers was chosen based on recently published reviews, a de novo assembly was performed with these and the resulting assemblies were subsequently evaluated according to conventional criteria.
+With this technical report, we aim to clarify the extent to which a difference in quality between long-read-only and hybrid approaches to de novo assembly is apparent. To answer this, a selection of promising assemblers was chosen based on recently published reviews, a de novo assembly was performed with these and the resulting assemblies were subsequently evaluated according to conventional criteria.
 
 Another aspect is the cost efficiency of using long reads. Increased read coverage can theoretically be used to correct errors in the long reads, but this comes at an increase of the sequencing cost. We have investigated how different depths of coverage of the long reads affect the quality of assemblies.
 
@@ -21,7 +20,7 @@ Most of the results for this project were obtained by running **Shell** scripts 
 
 For members of the _Integrated Transcriptomics_ research group a fully executed version of this repository comprising all result files is available at the server _romanov_.
 
-A _zip_ compressed file containing all files of the _./results_ directory after executing all of the steps below is furthermore accessible via [dropbox.com/s/kr953bxgpltco8k/results.zip](https://www.dropbox.com/s/kr953bxgpltco8k/results.zip?dl=0)
+To receive a _zip_ compressed file containing all files of the _./results_ directory (after executing all of the steps below) please contact the responsible author (simon.hackl@uni-tuebingen.de).
 
 By cloning this repository and executing all of the steps described below the directories _./data_ and _./results_ will be generated, featuring the following file catalog:
 ```
