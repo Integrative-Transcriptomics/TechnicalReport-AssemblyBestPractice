@@ -186,4 +186,4 @@ and the results were stored at the _./results/SNVdiscovery/CFT073/DNAdiff/_ dire
 
 ***
 
-If you have any questions about the content of this project, feel free to contact me at simon.hackl@student.uni-tuebingen.de
+If you have any questions about the content of this project, feel free to contact me at simon.hackl@uni-tuebingen.de
